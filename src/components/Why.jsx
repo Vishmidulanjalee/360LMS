@@ -36,7 +36,7 @@ export default function Why() {
     <section id="why" className="sec why" ref={ref}>
       <div className="wrap">
         <div className={`sec-head transition-all duration-700 ease-out ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <h2>Built for the way modern institutes work</h2>
+          <h2>Built for the way <span className="text-[#C2410C]">modern institutes work</span></h2>
         </div>
         
         <div className="why-grid">

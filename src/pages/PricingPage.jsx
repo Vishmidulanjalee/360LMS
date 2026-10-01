@@ -196,8 +196,8 @@ function PlanCard({ plan, delay = 0, inView }) {
           <div className={`
             relative px-4 pt-2 pb-3.5 text-[10px] font-extrabold tracking-widest uppercase text-center min-w-[80px]
             ${plan.id === 'standard'
-              ? 'bg-white text-[#C2410C]'
-              : 'bg-[#EA580C] text-white'}
+              ? 'bg-[linear-gradient(110deg,#ffffff,45%,#fff1e6,55%,#ffffff)] bg-[length:200%_auto] animate-[shimmerText_3s_linear_infinite] text-[#C2410C]'
+              : 'bg-[linear-gradient(110deg,#EA580C,45%,#F97316,55%,#EA580C)] bg-[length:200%_auto] animate-[shimmerText_3s_linear_infinite] text-white'}
             shadow-[0_4px_16px_rgba(0,0,0,0.18)]
           `}>
             {plan.badge}
@@ -311,7 +311,7 @@ function PlanCard({ plan, delay = 0, inView }) {
           </div>
 
           {/* Total */}
-          <div className={`mx-3 mb-3 rounded-xl px-4 py-3 flex justify-between items-center
+          <div className={`mx-4 mb-4 rounded-xl px-4 py-3 flex justify-between items-center
             ${isDark ? 'bg-white/10' : 'bg-white border border-[#EFE2D6] shadow-sm'}`}>
             <span className={`text-[12px] font-semibold ${isDark ? 'text-white/60' : 'text-[#6B5A4E]'}`}>Total / Month</span>
             <span className={`font-['Satoshi',sans-serif] text-[22px] font-extrabold tracking-tight ${isDark ? 'text-white' : 'text-[#C2410C]'}`}>
@@ -350,7 +350,7 @@ function PlanCard({ plan, delay = 0, inView }) {
 
         {/* CTA */}
         <a
-          href="https://wa.me/94762140284"
+          href="#whatsapp"
           target="_blank"
           rel="noopener noreferrer"
           className={`
@@ -398,7 +398,9 @@ export default function PricingPage() {
 
           <h1 className={`font-['Satoshi',sans-serif] font-bold text-[clamp(36px,5vw,64px)] leading-[1.08] tracking-[-0.035em] text-[#1C1410] transition-all duration-700 ease-out delay-100 ${heroIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
             Simple, Honest{' '}
-            <span className="text-[#C2410C]">Pricing</span>
+            <span className="relative inline-block text-transparent bg-clip-text bg-[linear-gradient(110deg,#C2410C,45%,#F97316,55%,#C2410C)] bg-[length:200%_auto] animate-[shimmerText_3s_linear_infinite]">
+              Pricing
+            </span>
           </h1>
 
           {/* Billing toggle */}
@@ -449,7 +451,7 @@ export default function PricingPage() {
             <p className="text-[13px] text-[#6B5A4E] mt-0.5">Our team will help you find the perfect fit for your institute — for free.</p>
           </div>
           <a
-            href="https://wa.me/94762140284"
+            href="#whatsapp"
             className="shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#25D366] text-white font-bold text-[14px] shadow-[0_6px_18px_rgba(37,211,102,.28)] hover:bg-[#20BB5A] hover:-translate-y-0.5 transition-all duration-200"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -466,7 +468,7 @@ export default function PricingPage() {
           <div className={`text-center mb-12 transition-all duration-700 ease-out ${tableIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
 
             <h2 className="font-['Satoshi',sans-serif] font-bold text-[clamp(26px,3vw,42px)] leading-[1.12] tracking-[-0.03em] text-[#1C1410]">
-              Everything side by side
+              Everything <span className="text-[#C2410C]">side by side</span>
             </h2>
           </div>
 
@@ -503,7 +505,7 @@ export default function PricingPage() {
               {PLANS.map(p => (
                 <div key={p.id} className={`px-4 flex justify-center ${p.id === 'standard' ? 'bg-[#FFF1E6]/40' : ''}`}>
                   <a
-                    href="https://wa.me/94762140284"
+                    href="#whatsapp"
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`

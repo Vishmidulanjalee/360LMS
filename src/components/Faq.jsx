@@ -148,7 +148,7 @@ export default function Faq() {
         >
           <p className="text-[15px] text-[#6B5A4E] mb-4">Still have questions? We're happy to help.</p>
           <a
-            href="https://wa.me/94762140284"
+            href="#whatsapp"
             target="_blank"
             rel="noopener noreferrer"
             className="

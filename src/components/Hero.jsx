@@ -120,7 +120,7 @@ export default function Hero() {
           transition-all duration-700 ease-out delay-380
           ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}
         `}>
-          From Student &amp; Staff Management to Fee Tracking, Online Classes, Automated SMS, Course Materials, and QR Attendance — all in one place.
+          From Student &amp; Staff Management to Fee Tracking, Automated SMS, and Course Materials — all in one place.
         </p>
 
         {/* CTAs */}
@@ -340,27 +340,9 @@ export default function Hero() {
           </div>
 
           {/* Floating badges */}
-          <div className="absolute -left-5 bottom-10 flex gap-3 items-center px-4 py-3 bg-white/90 backdrop-blur-md border border-white/80 rounded-2xl shadow-[0_20px_44px_rgba(60,30,10,.14)] animate-[floatPop_.55s_cubic-bezier(.34,1.56,.64,1)_both_.9s]">
-            <div className="w-9 h-9 rounded-xl bg-[#E8F7EE] flex items-center justify-center text-lg shrink-0">📲</div>
-            <div>
-              <div className="text-[12px] font-bold text-[#1C1410]">QR Attendance</div>
-              <div className="text-[11px] text-green-600 font-semibold">✓ Attendance recorded</div>
-            </div>
-          </div>
-          <div className="absolute -right-5 top-8 flex gap-3 items-center px-4 py-3 bg-white/90 backdrop-blur-md border border-white/80 rounded-2xl shadow-[0_20px_44px_rgba(60,30,10,.14)] animate-[floatPop_.55s_cubic-bezier(.34,1.56,.64,1)_both_1.1s]">
-            <div className="w-9 h-9 rounded-xl bg-[#FFF1E6] flex items-center justify-center text-lg shrink-0">💳</div>
-            <div>
-              <div className="text-[12px] font-bold text-[#1C1410]">Fee Tracking</div>
-              <div className="text-[11px] text-[#57483F]"><b>LKR 245,000</b> collected</div>
-            </div>
-          </div>
-          <div className="absolute -right-3 bottom-6 flex gap-3 items-center px-4 py-3 bg-white/90 backdrop-blur-md border border-white/80 rounded-2xl shadow-[0_20px_44px_rgba(60,30,10,.14)] animate-[floatPop_.55s_cubic-bezier(.34,1.56,.64,1)_both_1.3s]">
-            <div className="w-9 h-9 rounded-xl bg-[#FFF1E6] flex items-center justify-center text-lg shrink-0">▶️</div>
-            <div>
-              <div className="text-[12px] font-bold text-[#1C1410]">Online Classes</div>
-              <div className="text-[11px] text-[#57483F]"><b>12</b> upcoming sessions</div>
-            </div>
-          </div>
+
+
+
         </div>
 
       </div>

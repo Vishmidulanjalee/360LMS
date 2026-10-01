@@ -20,7 +20,7 @@ export default function Header() {
       >
         {/* Logo — left */}
         <a href="/" className="flex items-center justify-self-start">
-          <img src="/360logo.png" alt="360 LMS" className="h-10 w-auto" />
+          <img src="/360logo.png" alt="360 LMS" className="h-15 w-auto" />
         </a>
 
         {/* Desktop nav — absolute center, hidden on mobile */}

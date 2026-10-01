@@ -40,7 +40,7 @@ export default function Platform() {
     <section id="platform" className="sec platform-sec" ref={ref}>
       <div className="wrap">
         <div className={`sec-head platform-head transition-all duration-700 ease-out ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <span className="eyebrow">Platform overview</span>
+
           <h2>Everything your institute needs. In one platform.</h2>
           <p>360 LMS brings teaching, learning, administration, communication, and payments together in one powerful ecosystem.</p>
         </div>

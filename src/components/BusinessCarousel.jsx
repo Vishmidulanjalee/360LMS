@@ -113,14 +113,7 @@ export default function BusinessCarousel() {
         transition-all duration-700 ease-out
         ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}
       `}>
-        {/* Eyebrow */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full
-          bg-[#FFF1E6] border border-[#FDDCB5] mb-5">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#F97316]" />
-          <span className="text-[11.5px] font-bold text-[#C2410C] uppercase tracking-[.14em]">
-            Trusted by growing institutions
-          </span>
-        </div>
+
 
         <h2 className="font-['Sora',sans-serif] font-bold text-[clamp(26px,3vw,42px)] leading-[1.14] tracking-[-0.03em] text-[#1C1410]">
           Powering institutes that{' '}

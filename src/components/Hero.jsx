@@ -68,6 +68,19 @@ export default function Hero() {
 
 
 
+        {/* ── Top Badge ── */}
+        <div className={`
+          mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full
+          bg-white border border-[#F1E4D8]
+          shadow-[0_4px_18px_rgba(194,65,12,.10)]
+          transition-all duration-700 ease-out
+          ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
+        `}>
+          <span className="flex items-center justify-center w-5 h-5 rounded-full bg-[#C2410C] text-white text-[10px] font-extrabold">#1</span>
+          <span className="text-[13px] font-semibold text-[#57483F] tracking-tight">The No. 1 Learning Management Platform in Sri Lanka</span>
+          <span className="text-[12px]">🇱🇰</span>
+        </div>
+
         {/* ── Animated headline ── */}
         <h1 className={`
           hero-h1-perspective

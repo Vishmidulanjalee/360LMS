@@ -117,10 +117,7 @@ export default function BusinessCarousel() {
 
         <h2 className="font-['Sora',sans-serif] font-bold text-[clamp(26px,3vw,42px)] leading-[1.14] tracking-[-0.03em] text-[#1C1410]">
           Powering institutes that{' '}
-          <span className="relative inline-block">
-            <span className="relative z-10 text-[#C2410C]">love to grow</span>
-            <span className="absolute bottom-1 left-0 w-full h-1.5 bg-[#F97316]/15 rounded-full" />
-          </span>
+          <span className="relative z-10 text-[#C2410C]">love to grow</span>
         </h2>
 
         <p className="mt-4 text-[16px] text-[#6B5A4E] leading-relaxed">

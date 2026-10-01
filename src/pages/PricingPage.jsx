@@ -189,15 +189,28 @@ function PlanCard({ plan, delay = 0, inView }) {
       `}
       style={{ transitionDelay: `${delay}ms` }}
     >
-      {/* Badge */}
+      {/* Badge — ribbon label from top edge */}
       {plan.badge && (
-        <div className="absolute top-4 right-4">
-          <span className={`
-            px-3 py-1 rounded-full text-[10px] font-extrabold tracking-wider uppercase
-            ${plan.id === 'standard' ? 'bg-white text-[#C2410C]' : 'bg-[#F97316] text-white'}
+        <div className="absolute top-0 right-6 z-10">
+          {/* Ribbon body */}
+          <div className={`
+            relative px-4 pt-2 pb-3.5 text-[10px] font-extrabold tracking-widest uppercase text-center min-w-[80px]
+            ${plan.id === 'standard'
+              ? 'bg-white text-[#C2410C]'
+              : 'bg-[#EA580C] text-white'}
+            shadow-[0_4px_16px_rgba(0,0,0,0.18)]
           `}>
             {plan.badge}
-          </span>
+            {/* Bottom notch — creates the folded ribbon tip */}
+            <div className={`
+              absolute -bottom-[9px] left-0 right-0 flex
+            `}>
+              <div className={`w-1/2 h-[9px] ${plan.id === 'standard' ? 'bg-white' : 'bg-[#EA580C]'}`}
+                style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%)' }} />
+              <div className={`w-1/2 h-[9px] ${plan.id === 'standard' ? 'bg-white' : 'bg-[#EA580C]'}`}
+                style={{ clipPath: 'polygon(0 0, 0 100%, 100% 0)' }} />
+            </div>
+          </div>
         </div>
       )}
 

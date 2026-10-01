@@ -1,7 +1,24 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import Header from '../components/Header.jsx'
 import Footer from '../components/Footer.jsx'
+
+/* ─── useInView hook ─── */
+function useInView(threshold = 0.1) {
+  const ref = useRef(null)
+  const [inView, setInView] = useState(false)
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setInView(true); obs.disconnect() } },
+      { threshold }
+    )
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [threshold])
+  return [ref, inView]
+}
 
 /* ─── Data ─── */
 const PLANS = [
@@ -151,7 +168,7 @@ function CheckIcon({ ok }) {
   return <span className="text-[13px] font-semibold text-[#57483F]">{ok}</span>
 }
 
-function PlanCard({ plan }) {
+function PlanCard({ plan, delay = 0, inView }) {
   const [students, setStudents] = useState(0)
   const isLight = plan.id === 'starter'
   const isDark = !isLight
@@ -165,9 +182,12 @@ function PlanCard({ plan }) {
         bg-gradient-to-b ${plan.color}
         border ${plan.border}
         shadow-[0_24px_60px_rgba(60,30,10,.12)]
-        transition-transform duration-300 hover:-translate-y-1
+        transition-all duration-700 ease-out
+        ${inView ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-[0.97]'}
         ${plan.id === 'standard' ? 'shadow-[0_32px_80px_rgba(194,65,12,.22)] ring-2 ring-[#C2410C]/20' : ''}
+        hover:-translate-y-1
       `}
+      style={{ transitionDelay: `${delay}ms` }}
     >
       {/* Badge */}
       {plan.badge && (
@@ -286,6 +306,11 @@ function PlanCard({ plan }) {
 /* ─── Page ─── */
 export default function PricingPage() {
   const [annual, setAnnual] = useState(false)
+  const [heroRef,   heroIn]   = useInView(0.1)
+  const [cardsRef,  cardsIn]  = useInView(0.05)
+  const [helpRef,   helpIn]   = useInView(0.2)
+  const [tableRef,  tableIn]  = useInView(0.05)
+  const [faqRef,    faqIn]    = useInView(0.1)
 
   return (
     <div className="min-h-screen" style={{ background: '#FFF9F4' }}>
@@ -297,29 +322,29 @@ export default function PricingPage() {
         <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
           <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[350px] rounded-full bg-[radial-gradient(ellipse,rgba(249,115,22,.10)_0%,transparent_70%)]" />
         </div>
-        <div className="relative max-w-3xl mx-auto px-6">
+        <div ref={heroRef} className="relative max-w-3xl mx-auto px-6">
           {/* Breadcrumb */}
-          <div className="flex items-center justify-center gap-2 text-[13px] text-[#6B5A4E] mb-6">
+          <div className={`flex items-center justify-center gap-2 text-[13px] text-[#6B5A4E] mb-6 transition-all duration-500 ease-out ${heroIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             <a href="/" className="hover:text-[#C2410C] transition-colors">Home</a>
             <span className="text-[#C8B8AE]">/</span>
             <span className="text-[#C2410C] font-semibold">Pricing</span>
           </div>
 
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#F1E4D8] text-[#C2410C] text-[11px] font-bold tracking-widest uppercase shadow-sm mb-6">
+          <span className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#F1E4D8] text-[#C2410C] text-[11px] font-bold tracking-widest uppercase shadow-sm mb-6 transition-all duration-600 ease-out delay-75 ${heroIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             <span className="w-1.5 h-1.5 rounded-full bg-[#C2410C]" />
             Transparent Pricing
           </span>
 
-          <h1 className="font-['Satoshi',sans-serif] font-bold text-[clamp(36px,5vw,64px)] leading-[1.08] tracking-[-0.035em] text-[#1C1410]">
+          <h1 className={`font-['Satoshi',sans-serif] font-bold text-[clamp(36px,5vw,64px)] leading-[1.08] tracking-[-0.035em] text-[#1C1410] transition-all duration-700 ease-out delay-100 ${heroIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
             Simple, Honest{' '}
             <span className="text-[#C2410C]">Pricing</span>
           </h1>
-          <p className="mt-5 text-[17px] text-[#57483F] leading-relaxed max-w-xl mx-auto">
+          <p className={`mt-5 text-[17px] text-[#57483F] leading-relaxed max-w-xl mx-auto transition-all duration-700 ease-out delay-150 ${heroIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
             Choose the plan that fits your institute. Scale up anytime — no lock-in contracts, no surprise fees.
           </p>
 
           {/* Billing toggle */}
-          <div className="mt-7 inline-flex items-center gap-3 bg-white border border-[#EFE2D6] rounded-2xl p-1.5 shadow-sm">
+          <div className={`mt-7 inline-flex items-center gap-3 bg-white border border-[#EFE2D6] rounded-2xl p-1.5 shadow-sm transition-all duration-700 ease-out delay-200 ${heroIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             <button
               onClick={() => setAnnual(false)}
               className={`px-5 py-2 rounded-xl text-[13.5px] font-bold transition-all duration-200 ${!annual ? 'bg-[#C2410C] text-white shadow-[0_4px_12px_rgba(194,65,12,.30)]' : 'text-[#6B5A4E] hover:text-[#C2410C]'}`}
@@ -346,18 +371,21 @@ export default function PricingPage() {
       </section>
 
       {/* ── Pricing Cards ── */}
-      <section className="max-w-6xl mx-auto px-6 pb-20">
+      <section ref={cardsRef} className="max-w-6xl mx-auto px-6 pb-20">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
-          {PLANS.map(plan => {
+          {PLANS.map((plan, i) => {
             const discounted = annual
               ? { ...plan, basePrice: Math.round(plan.basePrice * 0.85), perStudent: Math.round(plan.perStudent * 0.85) }
               : plan
-            return <PlanCard key={plan.id} plan={discounted} />
+            return <PlanCard key={plan.id} plan={discounted} delay={i * 120} inView={cardsIn} />
           })}
         </div>
 
         {/* Help strip */}
-        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 bg-white border border-[#EFE2D6] rounded-2xl py-5 px-8 shadow-sm text-center sm:text-left">
+        <div
+          ref={helpRef}
+          className={`mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 bg-white border border-[#EFE2D6] rounded-2xl py-5 px-8 shadow-sm text-center sm:text-left transition-all duration-700 ease-out ${helpIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+        >
           <div>
             <p className="font-['Satoshi',sans-serif] font-bold text-[15px] text-[#1C1410]">Not sure which plan is right for you?</p>
             <p className="text-[13px] text-[#6B5A4E] mt-0.5">Our team will help you find the perfect fit for your institute — for free.</p>
@@ -375,9 +403,9 @@ export default function PricingPage() {
       </section>
 
       {/* ── Feature Comparison ── */}
-      <section className="relative py-20" style={{ background: 'linear-gradient(180deg,#fff 0%,#fffaf5 100%)' }}>
+      <section ref={tableRef} className="relative py-20" style={{ background: 'linear-gradient(180deg,#fff 0%,#fffaf5 100%)' }}>
         <div className="max-w-5xl mx-auto px-6">
-          <div className="text-center mb-12">
+          <div className={`text-center mb-12 transition-all duration-700 ease-out ${tableIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#F1E4D8] text-[#C2410C] text-[11px] font-bold tracking-widest uppercase shadow-sm mb-5">
               <span className="w-1.5 h-1.5 rounded-full bg-[#C2410C]" />
               Compare Plans
@@ -387,7 +415,7 @@ export default function PricingPage() {
             </h2>
           </div>
 
-          <div className="bg-white border border-[#EFE2D6] rounded-3xl overflow-hidden shadow-[0_16px_50px_rgba(60,30,10,.07)]">
+          <div className={`bg-white border border-[#EFE2D6] rounded-3xl overflow-hidden shadow-[0_16px_50px_rgba(60,30,10,.07)] transition-all duration-700 ease-out delay-100 ${tableIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             {/* Table header */}
             <div className="grid grid-cols-4 bg-[#FFF9F4] border-b border-[#EFE2D6]">
               <div className="px-6 py-4 text-[12px] font-bold uppercase tracking-wider text-[#6B5A4E]">Feature</div>
@@ -440,9 +468,9 @@ export default function PricingPage() {
       </section>
 
       {/* ── FAQ ── */}
-      <section className="relative py-20" style={{ background: '#FFF9F4' }}>
+      <section ref={faqRef} className="relative py-20" style={{ background: '#FFF9F4' }}>
         <div className="max-w-2xl mx-auto px-6">
-          <div className="text-center mb-10">
+          <div className={`text-center mb-10 transition-all duration-700 ease-out ${faqIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#F1E4D8] text-[#C2410C] text-[11px] font-bold tracking-widest uppercase shadow-sm mb-5">
               <span className="w-1.5 h-1.5 rounded-full bg-[#C2410C]" />
               FAQ

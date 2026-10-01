@@ -4,8 +4,8 @@ import { Link, useLocation } from 'react-router-dom'
 const NAV_LINKS = [
   { href: '/#platform',  label: 'Platform'    },
   { href: '/#ecosystem', label: 'Features'    },
-  { href: '/#solutions', label: 'Solutions'   },
   { href: '/#why',       label: 'Why 360 LMS' },
+  { href: '/#solutions', label: 'Solutions'   },
   { href: '/#faq',       label: 'FAQ'         },
   { href: '/#cta',       label: 'Contact'     },
 ]

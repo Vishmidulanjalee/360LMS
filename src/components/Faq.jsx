@@ -125,10 +125,7 @@ export default function Faq() {
         <div
           className={`text-center mb-12 transition-all duration-700 ease-out ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
         >
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#F1E4D8] text-[#C2410C] text-[11px] font-bold tracking-widest uppercase shadow-sm mb-5">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#C2410C]" />
-            FAQ
-          </span>
+
           <h2 className="font-['Sora',sans-serif] font-bold text-[clamp(28px,3.5vw,46px)] leading-[1.12] tracking-[-0.03em] text-[#1C1410]">
             Frequently Asked{' '}
             <span className="text-[#C2410C]">Questions</span>

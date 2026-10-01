@@ -70,15 +70,33 @@ export default function Hero() {
 
         {/* ── Top Badge ── */}
         <div className={`
-          mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full
-          bg-white border border-[#F1E4D8]
-          shadow-[0_4px_18px_rgba(194,65,12,.10)]
-          transition-all duration-700 ease-out
+          group relative mb-8 inline-flex p-[1.5px] rounded-full overflow-hidden
+          shadow-[0_0_30px_rgba(249,115,22,0.2)]
+          hover:shadow-[0_0_50px_rgba(249,115,22,0.4)]
+          transition-all duration-500 ease-out hover:-translate-y-1 cursor-default
           ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
         `}>
-          <span className="flex items-center justify-center w-5 h-5 rounded-full bg-[#C2410C] text-white text-[10px] font-extrabold">#1</span>
-          <span className="text-[13px] font-semibold text-[#57483F] tracking-tight">The No. 1 Learning Management Platform in Sri Lanka</span>
-          <span className="text-[12px]">🇱🇰</span>
+          {/* Animated Magic Border */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200%] aspect-square bg-[conic-gradient(from_0deg,transparent_0%,transparent_35%,#F97316_50%,#EA580C_55%,transparent_65%,transparent_100%)] animate-[spin_2.5s_linear_infinite] opacity-80"></div>
+          
+          {/* Fallback glow in case of performance drop */}
+          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#F97316]/50 to-[#EA580C]/50 blur-sm opacity-30 group-hover:opacity-60 transition-opacity duration-500"></div>
+
+          <div className="relative inline-flex items-center gap-3 px-5 py-2 rounded-full bg-white/95 backdrop-blur-xl border border-[#FDBA74]/30 overflow-hidden w-full">
+            {/* Shine effect passing through */}
+            <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/80 to-transparent group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
+            
+            <span className="relative flex items-center justify-center p-1.5 rounded-full bg-gradient-to-br from-[#EA580C] to-[#C2410C] text-white shadow-[0_2px_12px_rgba(194,65,12,0.5)]">
+              <span className="absolute inset-0 rounded-full animate-ping bg-[#EA580C] opacity-40"></span>
+              <svg className="w-3.5 h-3.5 relative z-10" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M11.246 2.5a.75.75 0 011.508 0c.071 3.51 2.742 6.18 6.252 6.252a.75.75 0 010 1.508c-3.51.071-6.18 2.742-6.252 6.252a.75.75 0 01-1.508 0c-.071-3.51-2.742-6.18-6.252-6.252a.75.75 0 010-1.508c3.51-.071 6.18-2.742 6.252-6.252z" />
+              </svg>
+            </span>
+            <span className="relative text-[14px] sm:text-[14.5px] font-extrabold bg-gradient-to-r from-[#1C1410] to-[#57483F] bg-clip-text text-transparent tracking-tight">
+              The No. 1 Learning Management Platform in Sri Lanka
+            </span>
+            <span className="relative text-[14px] select-none group-hover:scale-125 group-hover:-rotate-12 transition-transform duration-300">🇱🇰</span>
+          </div>
         </div>
 
         {/* ── Animated headline ── */}
@@ -133,7 +151,7 @@ export default function Hero() {
           transition-all duration-700 ease-out delay-380
           ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}
         `}>
-          From Student &amp; Staff Management to Fee Tracking, Automated SMS, and Course Materials — all in one place.
+          From Student &amp; Staff Management to Fee Tracking, Automated SMS, and Course Materials - all in one place.
         </p>
 
         {/* CTAs */}
@@ -174,7 +192,7 @@ export default function Hero() {
           transition-all duration-700 ease-out delay-500
           ${visible ? 'opacity-100' : 'opacity-0'}
         `}>
-          Built for modern educators, institutes, and learning communities.
+          <br></br> Built for modern educators, institutes, and learning communities.
         </p>
 
         {/* Stats strip */}

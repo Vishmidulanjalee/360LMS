@@ -330,10 +330,34 @@ export default function PricingPage() {
             <span className="text-[#C2410C] font-semibold">Pricing</span>
           </div>
 
-          <span className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#F1E4D8] text-[#C2410C] text-[11px] font-bold tracking-widest uppercase shadow-sm mb-6 transition-all duration-600 ease-out delay-75 ${heroIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-            <span className="w-1.5 h-1.5 rounded-full bg-[#C2410C]" />
-            Transparent Pricing
-          </span>
+          <div className={`
+            group relative mb-8 inline-flex p-[1.5px] rounded-full overflow-hidden
+            shadow-[0_0_30px_rgba(249,115,22,0.2)]
+            hover:shadow-[0_0_50px_rgba(249,115,22,0.4)]
+            transition-all duration-500 ease-out hover:-translate-y-1 cursor-default
+            ${heroIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
+          `}>
+            {/* Animated Magic Border */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200%] aspect-square bg-[conic-gradient(from_0deg,transparent_0%,transparent_35%,#F97316_50%,#EA580C_55%,transparent_65%,transparent_100%)] animate-[spin_2.5s_linear_infinite] opacity-80"></div>
+            
+            {/* Fallback glow */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#F97316]/50 to-[#EA580C]/50 blur-sm opacity-30 group-hover:opacity-60 transition-opacity duration-500"></div>
+
+            <div className="relative inline-flex items-center gap-3 px-5 py-2 rounded-full bg-white/95 backdrop-blur-xl border border-[#FDBA74]/30 overflow-hidden w-full">
+              {/* Shine effect passing through */}
+              <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/80 to-transparent group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
+              
+              <span className="relative flex items-center justify-center p-1.5 rounded-full bg-gradient-to-br from-[#EA580C] to-[#C2410C] text-white shadow-[0_2px_12px_rgba(194,65,12,0.5)]">
+                <span className="absolute inset-0 rounded-full animate-ping bg-[#EA580C] opacity-40"></span>
+                <svg className="w-3.5 h-3.5 relative z-10" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M11.246 2.5a.75.75 0 011.508 0c.071 3.51 2.742 6.18 6.252 6.252a.75.75 0 010 1.508c-3.51.071-6.18 2.742-6.252 6.252a.75.75 0 01-1.508 0c-.071-3.51-2.742-6.18-6.252-6.252a.75.75 0 010-1.508c3.51-.071 6.18-2.742 6.252-6.252z" />
+                </svg>
+              </span>
+              <span className="relative text-[12px] font-bold text-[#C2410C] tracking-widest uppercase">
+                Transparent Pricing
+              </span>
+            </div>
+          </div>
 
           <h1 className={`font-['Satoshi',sans-serif] font-bold text-[clamp(36px,5vw,64px)] leading-[1.08] tracking-[-0.035em] text-[#1C1410] transition-all duration-700 ease-out delay-100 ${heroIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
             Simple, Honest{' '}
@@ -406,10 +430,7 @@ export default function PricingPage() {
       <section ref={tableRef} className="relative py-20" style={{ background: 'linear-gradient(180deg,#fff 0%,#fffaf5 100%)' }}>
         <div className="max-w-5xl mx-auto px-6">
           <div className={`text-center mb-12 transition-all duration-700 ease-out ${tableIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#F1E4D8] text-[#C2410C] text-[11px] font-bold tracking-widest uppercase shadow-sm mb-5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#C2410C]" />
-              Compare Plans
-            </span>
+
             <h2 className="font-['Sora',sans-serif] font-bold text-[clamp(26px,3vw,42px)] leading-[1.12] tracking-[-0.03em] text-[#1C1410]">
               Everything side by side
             </h2>
@@ -471,10 +492,7 @@ export default function PricingPage() {
       <section ref={faqRef} className="relative py-20" style={{ background: '#FFF9F4' }}>
         <div className="max-w-2xl mx-auto px-6">
           <div className={`text-center mb-10 transition-all duration-700 ease-out ${faqIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#F1E4D8] text-[#C2410C] text-[11px] font-bold tracking-widest uppercase shadow-sm mb-5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#C2410C]" />
-              FAQ
-            </span>
+
             <h2 className="font-['Satoshi',sans-serif] font-bold text-[clamp(26px,3vw,42px)] leading-[1.12] tracking-[-0.03em] text-[#1C1410]">
               Pricing <span className="text-[#C2410C]">Questions</span>
             </h2>

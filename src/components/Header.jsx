@@ -175,8 +175,6 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Spacer under fixed nav */}
-      <div style={{ height: '76px' }} />
     </>
   )
 }

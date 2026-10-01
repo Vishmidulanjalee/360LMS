@@ -54,7 +54,7 @@ export default function Hero() {
   const current = LINES[idx]
 
   return (
-    <section className="relative overflow-hidden bg-[#FFF9F4]">
+    <section className="relative overflow-hidden bg-[#FFF9F4] min-h-screen flex flex-col">
 
       {/* ── Ambient orbs ── */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
@@ -64,7 +64,7 @@ export default function Hero() {
       </div>
 
       {/* ── Main content ── */}
-      <div className="relative z-10 max-w-5xl mx-auto px-6 py-20 flex flex-col items-center text-center">
+      <div className="relative z-10 max-w-5xl mx-auto px-6 pt-[130px] pb-16 flex flex-col items-center text-center flex-1">
 
 
 
@@ -125,7 +125,7 @@ export default function Hero() {
           transition-all duration-700 ease-out delay-300
           ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}
         `}>
-          Manage your classes and students smarter with an all-in-one platform built for modern educators and institutes.
+          <br></br> Manage your classes and students smarter with an all-in-one platform built for modern educators and institutes.
         </p>
 
         <p className={`

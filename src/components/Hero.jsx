@@ -64,7 +64,7 @@ export default function Hero() {
       </div>
 
       {/* ── Main content ── */}
-      <div className="relative z-10 max-w-5xl mx-auto px-6 pt-28 pb-32 flex flex-col items-center text-center">
+      <div className="relative z-10 max-w-5xl mx-auto px-6 py-20 flex flex-col items-center text-center">
 
 
 

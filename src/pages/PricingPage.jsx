@@ -204,7 +204,7 @@ function PlanCard({ plan, delay = 0, inView }) {
       <div className="p-7 flex flex-col flex-1">
         {/* Plan name */}
         <div className="mb-6">
-          <h3 className={`font-['Sora',sans-serif] font-bold text-[22px] ${isDark ? 'text-white' : 'text-[#1C1410]'}`}>
+          <h3 className={`font-['Satoshi',sans-serif] font-bold text-[22px] ${isDark ? 'text-white' : 'text-[#1C1410]'}`}>
             {plan.name}
           </h3>
           <p className={`text-[13px] mt-1 ${isDark ? 'text-white/70' : 'text-[#6B5A4E]'}`}>
@@ -218,7 +218,7 @@ function PlanCard({ plan, delay = 0, inView }) {
             Monthly Base Fee
           </div>
           <div className="flex items-end gap-1.5">
-            <span className={`font-['Sora',sans-serif] font-extrabold text-[38px] leading-none ${isDark ? 'text-white' : 'text-[#C2410C]'}`}>
+            <span className={`font-['Satoshi',sans-serif] font-extrabold text-[38px] leading-none ${isDark ? 'text-white' : 'text-[#C2410C]'}`}>
               LKR {plan.basePrice.toLocaleString()}
             </span>
           </div>
@@ -250,7 +250,7 @@ function PlanCard({ plan, delay = 0, inView }) {
 
           <div className={`mt-3 pt-3 border-t ${isDark ? 'border-white/10' : 'border-[#EFE2D6]'} flex justify-between items-center`}>
             <span className={`text-[12px] font-semibold ${isDark ? 'text-white/60' : 'text-[#6B5A4E]'}`}>Total / Month</span>
-            <span className={`font-['Sora',sans-serif] text-[20px] font-extrabold ${isDark ? 'text-white' : 'text-[#C2410C]'}`}>
+            <span className={`font-['Satoshi',sans-serif] text-[20px] font-extrabold ${isDark ? 'text-white' : 'text-[#C2410C]'}`}>
               LKR {totalFee.toLocaleString()}
             </span>
           </div>
@@ -330,42 +330,12 @@ export default function PricingPage() {
             <span className="text-[#C2410C] font-semibold">Pricing</span>
           </div>
 
-          <div className={`
-            group relative mb-8 inline-flex p-[1.5px] rounded-full overflow-hidden
-            shadow-[0_0_30px_rgba(249,115,22,0.2)]
-            hover:shadow-[0_0_50px_rgba(249,115,22,0.4)]
-            transition-all duration-500 ease-out hover:-translate-y-1 cursor-default
-            ${heroIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
-          `}>
-            {/* Animated Magic Border */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200%] aspect-square bg-[conic-gradient(from_0deg,transparent_0%,transparent_35%,#F97316_50%,#EA580C_55%,transparent_65%,transparent_100%)] animate-[spin_2.5s_linear_infinite] opacity-80"></div>
-            
-            {/* Fallback glow */}
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#F97316]/50 to-[#EA580C]/50 blur-sm opacity-30 group-hover:opacity-60 transition-opacity duration-500"></div>
 
-            <div className="relative inline-flex items-center gap-3 px-5 py-2 rounded-full bg-white/95 backdrop-blur-xl border border-[#FDBA74]/30 overflow-hidden w-full">
-              {/* Shine effect passing through */}
-              <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/80 to-transparent group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
-              
-              <span className="relative flex items-center justify-center p-1.5 rounded-full bg-gradient-to-br from-[#EA580C] to-[#C2410C] text-white shadow-[0_2px_12px_rgba(194,65,12,0.5)]">
-                <span className="absolute inset-0 rounded-full animate-ping bg-[#EA580C] opacity-40"></span>
-                <svg className="w-3.5 h-3.5 relative z-10" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M11.246 2.5a.75.75 0 011.508 0c.071 3.51 2.742 6.18 6.252 6.252a.75.75 0 010 1.508c-3.51.071-6.18 2.742-6.252 6.252a.75.75 0 01-1.508 0c-.071-3.51-2.742-6.18-6.252-6.252a.75.75 0 010-1.508c3.51-.071 6.18-2.742 6.252-6.252z" />
-                </svg>
-              </span>
-              <span className="relative text-[12px] font-bold text-[#C2410C] tracking-widest uppercase">
-                Transparent Pricing
-              </span>
-            </div>
-          </div>
 
           <h1 className={`font-['Satoshi',sans-serif] font-bold text-[clamp(36px,5vw,64px)] leading-[1.08] tracking-[-0.035em] text-[#1C1410] transition-all duration-700 ease-out delay-100 ${heroIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
             Simple, Honest{' '}
             <span className="text-[#C2410C]">Pricing</span>
           </h1>
-          <p className={`mt-5 text-[17px] text-[#57483F] leading-relaxed max-w-xl mx-auto transition-all duration-700 ease-out delay-150 ${heroIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
-            Choose the plan that fits your institute. Scale up anytime — no lock-in contracts, no surprise fees.
-          </p>
 
           {/* Billing toggle */}
           <div className={`mt-7 inline-flex items-center gap-3 bg-white border border-[#EFE2D6] rounded-2xl p-1.5 shadow-sm transition-all duration-700 ease-out delay-200 ${heroIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
@@ -388,7 +358,7 @@ export default function PricingPage() {
 
           {annual && (
             <p className="mt-3 text-[13px] text-[#6B5A4E]">
-              Annual billing — prices shown reflect the 15% discount applied upfront.
+              Annual billing - prices shown reflect the 15% discount applied upfront.
             </p>
           )}
         </div>
@@ -431,7 +401,7 @@ export default function PricingPage() {
         <div className="max-w-5xl mx-auto px-6">
           <div className={`text-center mb-12 transition-all duration-700 ease-out ${tableIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
 
-            <h2 className="font-['Sora',sans-serif] font-bold text-[clamp(26px,3vw,42px)] leading-[1.12] tracking-[-0.03em] text-[#1C1410]">
+            <h2 className="font-['Satoshi',sans-serif] font-bold text-[clamp(26px,3vw,42px)] leading-[1.12] tracking-[-0.03em] text-[#1C1410]">
               Everything side by side
             </h2>
           </div>
@@ -442,7 +412,7 @@ export default function PricingPage() {
               <div className="px-6 py-4 text-[12px] font-bold uppercase tracking-wider text-[#6B5A4E]">Feature</div>
               {PLANS.map(p => (
                 <div key={p.id} className={`px-4 py-4 text-center ${p.id === 'standard' ? 'bg-[#FFF1E6]' : ''}`}>
-                  <div className={`font-['Sora',sans-serif] font-extrabold text-[15px] ${p.id === 'standard' ? 'text-[#C2410C]' : 'text-[#1C1410]'}`}>{p.name}</div>
+                  <div className={`font-['Satoshi',sans-serif] font-extrabold text-[15px] ${p.id === 'standard' ? 'text-[#C2410C]' : 'text-[#1C1410]'}`}>{p.name}</div>
                   {p.badge && <span className="text-[10px] font-bold text-[#C2410C] bg-[#FDDCC4] px-2 py-0.5 rounded-full">{p.badge}</span>}
                 </div>
               ))}

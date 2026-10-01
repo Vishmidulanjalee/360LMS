@@ -166,14 +166,10 @@ export default function Testimonials() {
       >
 
 
-        <h2 className="font-['Sora',sans-serif] font-bold text-[clamp(28px,3.5vw,46px)] leading-[1.12] tracking-[-0.03em] text-[#1C1410]">
+        <h2 className="font-['Satoshi',sans-serif] font-bold text-[clamp(28px,3.5vw,46px)] leading-[1.12] tracking-[-0.03em] text-[#1C1410]">
           Trusted by institutes{' '}
           <span className="text-[#C2410C]">across Sri Lanka</span>
         </h2>
-
-        <p className="mt-4 text-[16px] text-[#57483F] leading-relaxed max-w-xl mx-auto">
-          Hear from educators and administrators who have transformed their institutions with 360 LMS.
-        </p>
 
         {/* Overall rating pill */}
         <div className="mt-6 inline-flex items-center gap-3 px-5 py-3 bg-white rounded-2xl border border-[#EFE2D6] shadow-[0_4px_16px_rgba(60,30,10,.06)]">
@@ -184,7 +180,7 @@ export default function Testimonials() {
               </svg>
             ))}
           </div>
-          <span className="font-['Sora',sans-serif] font-extrabold text-[18px] text-[#C2410C]">4.9</span>
+          <span className="font-['Satoshi',sans-serif] font-extrabold text-[18px] text-[#C2410C]">4.9</span>
           <span className="text-[13px] text-[#6B5A4E] font-medium">Average rating · 36+ institutions</span>
         </div>
       </div>

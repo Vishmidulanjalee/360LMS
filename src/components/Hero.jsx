@@ -102,7 +102,7 @@ export default function Hero() {
         {/* ── Animated headline ── */}
         <h1 className={`
           hero-h1-perspective
-          font-['Sora',sans-serif] font-bold leading-[1.06] tracking-[-0.035em] select-none
+          font-['Satoshi',sans-serif] font-bold leading-[1.06] tracking-[-0.035em] select-none
           transition-all duration-700 ease-out delay-100
           ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}
         `}>
@@ -211,7 +211,7 @@ export default function Hero() {
           ].map((s, i, arr) => (
             <span key={s.lbl} className="flex items-center">
               <span className="flex flex-col items-center px-7 py-3">
-                <strong className="font-['Sora',sans-serif] text-[21px] font-extrabold text-[#C2410C] leading-tight">
+                <strong className="font-['Satoshi',sans-serif] text-[21px] font-extrabold text-[#C2410C] leading-tight">
                   {s.val}
                 </strong>
                 <span className="text-[11px] font-semibold text-[#6B5A4E] mt-0.5">{s.lbl}</span>
@@ -275,7 +275,7 @@ export default function Hero() {
               {/* Main */}
               <div className="flex-1 min-w-0 p-4 flex flex-col gap-3">
                 <div className="flex justify-between items-baseline">
-                  <strong className="font-['Sora',sans-serif] text-[14px]">Institute Overview</strong>
+                  <strong className="font-['Satoshi',sans-serif] text-[14px]">Institute Overview</strong>
                   <span className="text-[10px] text-[#6B5A4E]">This term</span>
                 </div>
 
@@ -293,7 +293,7 @@ export default function Hero() {
                         : 'border-[#F5ECE4]'}`}
                     >
                       <div className={`text-[9.5px] ${k.hot ? 'text-white/80' : 'text-[#6B5A4E]'}`}>{k.lbl}</div>
-                      <div className={`font-['Sora',sans-serif] text-[17px] font-bold mt-0.5 ${k.hot ? 'text-white' : ''}`}>{k.val}</div>
+                      <div className={`font-['Satoshi',sans-serif] text-[17px] font-bold mt-0.5 ${k.hot ? 'text-white' : ''}`}>{k.val}</div>
                       <div className={`text-[8.5px] font-semibold mt-0.5 ${k.hot ? 'text-white/90' : k.subC}`}>{k.sub}</div>
                     </div>
                   ))}

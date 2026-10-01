@@ -242,28 +242,79 @@ function PlanCard({ plan, delay = 0, inView }) {
         </div>
 
         {/* Student calculator */}
-        <div className={`mt-5 rounded-2xl p-4 ${isDark ? 'bg-white/10' : 'bg-white border border-[#EFE2D6]'}`}>
-          <div className={`text-[11px] font-bold uppercase tracking-wider mb-3 ${isDark ? 'text-white/70' : 'text-[#6B5A4E]'}`}>
-            Active Students
-          </div>
-          <input
-            type="range"
-            min={0}
-            max={Math.min(plan.maxStudents, 1000)}
-            step={10}
-            value={students}
-            onChange={e => setStudents(Number(e.target.value))}
-            className="w-full h-1.5 rounded-full accent-[#C2410C] cursor-pointer"
-          />
-          <div className="flex justify-between mt-1.5">
-            <span className={`text-[11px] ${isDark ? 'text-white/50' : 'text-[#A8978A]'}`}>0</span>
-            <span className={`text-[13px] font-bold ${isDark ? 'text-white' : 'text-[#1C1410]'}`}>{students}</span>
-            <span className={`text-[11px] ${isDark ? 'text-white/50' : 'text-[#A8978A]'}`}>{Math.min(plan.maxStudents, 1000)}</span>
+        <div className={`mt-5 rounded-2xl overflow-hidden ${isDark ? 'bg-white/10' : 'bg-[#FFF9F4] border border-[#EFE2D6]'}`}>
+          {/* Header */}
+          <div className={`px-4 pt-3.5 pb-2.5 flex items-center justify-between border-b ${isDark ? 'border-white/10' : 'border-[#EFE2D6]'}`}>
+            <span className={`text-[11px] font-bold uppercase tracking-widest ${isDark ? 'text-white/60' : 'text-[#6B5A4E]'}`}>
+              Estimate Students
+            </span>
+            <div className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md border ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-[#EFE2D6] shadow-[0_2px_8px_rgba(194,65,12,.04)]'}`}>
+              <span className="relative flex h-1.5 w-1.5">
+                <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${isDark ? 'bg-white' : 'bg-[#C2410C]'}`}></span>
+                <span className={`relative inline-flex rounded-full h-1.5 w-1.5 ${isDark ? 'bg-white' : 'bg-[#C2410C]'}`}></span>
+              </span>
+              <span className={`text-[9px] font-bold uppercase tracking-widest ${isDark ? 'text-white/80' : 'text-[#C2410C]'}`}>
+                Limit: {plan.maxStudents < 9999 ? plan.maxStudents.toLocaleString() : '∞'}
+              </span>
+            </div>
           </div>
 
-          <div className={`mt-3 pt-3 border-t ${isDark ? 'border-white/10' : 'border-[#EFE2D6]'} flex justify-between items-center`}>
+          {/* Direct input + stepper */}
+          <div className="px-4 py-3.5 flex items-center gap-2">
+            <button
+              onClick={() => setStudents(s => Math.max(0, s - 10))}
+              className={`w-9 h-9 rounded-xl flex items-center justify-center font-bold text-xl shrink-0 transition-all duration-150 active:scale-90 select-none
+                ${isDark ? 'bg-white/15 text-white hover:bg-white/25' : 'bg-white border border-[#EFE2D6] text-[#C2410C] hover:bg-[#FFF1E6] shadow-sm'}`}
+            >−</button>
+
+            <div className="flex-1 relative">
+              <input
+                type="number"
+                min={0}
+                max={plan.maxStudents < 9999 ? plan.maxStudents : 99999}
+                value={students}
+                onChange={e => {
+                  const v = Math.max(0, Math.min(plan.maxStudents < 9999 ? plan.maxStudents : 99999, Number(e.target.value) || 0))
+                  setStudents(v)
+                }}
+                className={`w-full text-center text-[22px] font-extrabold rounded-xl py-2 px-3 outline-none border-2 transition-colors duration-200
+                  ${isDark
+                    ? 'bg-white/10 border-white/20 text-white focus:border-white/50'
+                    : 'bg-white border-[#EFE2D6] text-[#C2410C] focus:border-[#C2410C]'}
+                  [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none`}
+              />
+              <span className={`absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-semibold pointer-events-none ${isDark ? 'text-white/40' : 'text-[#A8978A]'}`}>
+                students
+              </span>
+            </div>
+
+            <button
+              onClick={() => setStudents(s => Math.min(plan.maxStudents < 9999 ? plan.maxStudents : 99999, s + 10))}
+              className={`w-9 h-9 rounded-xl flex items-center justify-center font-bold text-xl shrink-0 transition-all duration-150 active:scale-90 select-none
+                ${isDark ? 'bg-white/15 text-white hover:bg-white/25' : 'bg-white border border-[#EFE2D6] text-[#C2410C] hover:bg-[#FFF1E6] shadow-sm'}`}
+            >+</button>
+          </div>
+
+          {/* Quick presets */}
+          <div className="px-4 pb-3 flex gap-1.5 flex-wrap">
+            {[50, 100, 200, 500, ...(plan.maxStudents >= 1000 ? [1000] : [])].map(n => (
+              <button
+                key={n}
+                onClick={() => setStudents(Math.min(n, plan.maxStudents < 9999 ? plan.maxStudents : 99999))}
+                className={`text-[11px] font-bold px-2.5 py-1 rounded-lg transition-all duration-150 active:scale-95
+                  ${students === n
+                    ? isDark ? 'bg-white text-[#C2410C]' : 'bg-[#C2410C] text-white'
+                    : isDark ? 'bg-white/10 text-white/60 hover:bg-white/20' : 'bg-white border border-[#EFE2D6] text-[#6B5A4E] hover:border-[#C2410C] hover:text-[#C2410C]'
+                  }`}
+              >{n}</button>
+            ))}
+          </div>
+
+          {/* Total */}
+          <div className={`mx-3 mb-3 rounded-xl px-4 py-3 flex justify-between items-center
+            ${isDark ? 'bg-white/10' : 'bg-white border border-[#EFE2D6] shadow-sm'}`}>
             <span className={`text-[12px] font-semibold ${isDark ? 'text-white/60' : 'text-[#6B5A4E]'}`}>Total / Month</span>
-            <span className={`font-['Satoshi',sans-serif] text-[20px] font-extrabold ${isDark ? 'text-white' : 'text-[#C2410C]'}`}>
+            <span className={`font-['Satoshi',sans-serif] text-[22px] font-extrabold tracking-tight ${isDark ? 'text-white' : 'text-[#C2410C]'}`}>
               LKR {totalFee.toLocaleString()}
             </span>
           </div>

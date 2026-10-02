@@ -72,8 +72,8 @@
   --body:#57483F;
   --muted:#6B5A4E;
   --line:#F1E4D8;
-  --display:'Satoshi',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
-  --text:'Satoshi',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  --display:'SF Pro Display', 'Satoshi',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  --text:'SF Pro Display', 'Satoshi',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}

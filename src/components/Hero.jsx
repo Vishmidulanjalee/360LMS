@@ -93,7 +93,7 @@ const DashboardMockup = memo(function DashboardMockup({ dashRef, dashVisible }) 
           {/* Main */}
           <div className="flex-1 min-w-0 p-4 flex flex-col gap-3">
             <div className="flex justify-between items-baseline">
-              <strong className="font-['Satoshi',sans-serif] text-[14px]">Institute Overview</strong>
+              <strong className="font-['SF_Pro_Display','Satoshi',sans-serif] text-[14px]">Institute Overview</strong>
               <span className="text-[10px] text-[#6B5A4E]">This term</span>
             </div>
 
@@ -111,7 +111,7 @@ const DashboardMockup = memo(function DashboardMockup({ dashRef, dashVisible }) 
                     : 'border-[#F5ECE4]'}`}
                 >
                   <div className={`text-[9.5px] ${k.hot ? 'text-white/80' : 'text-[#6B5A4E]'}`}>{k.lbl}</div>
-                  <div className={`font-['Satoshi',sans-serif] text-[17px] font-bold mt-0.5 ${k.hot ? 'text-white' : ''}`}>{k.val}</div>
+                  <div className={`font-['SF_Pro_Display','Satoshi',sans-serif] text-[17px] font-bold mt-0.5 ${k.hot ? 'text-white' : ''}`}>{k.val}</div>
                   <div className={`text-[8.5px] font-semibold mt-0.5 ${k.hot ? 'text-white/90' : k.subC}`}>{k.sub}</div>
                 </div>
               ))}
@@ -282,7 +282,7 @@ export default function Hero() {
           <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#F97316]/50 to-[#EA580C]/50 blur-sm opacity-30 group-hover:opacity-60 transition-opacity duration-500"></div>
           <div className="relative inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-white/95 backdrop-blur-xl border border-[#FDBA74]/30 overflow-hidden w-full">
             <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/80 to-transparent group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
-            <span className="relative font-['Satoshi',sans-serif] text-[13px] sm:text-[13.5px] font-extrabold tracking-[0.04em] bg-[linear-gradient(110deg,#7C2D12,30%,#EA580C,50%,#C2410C,70%,#7C2D12)] bg-[length:250%_auto] animate-[shimmerText_4s_linear_infinite] bg-clip-text text-transparent">
+            <span className="relative font-['SF_Pro_Display','Satoshi',sans-serif] text-[13px] sm:text-[13.5px] font-extrabold tracking-[0.04em] bg-[linear-gradient(110deg,#7C2D12,30%,#EA580C,50%,#C2410C,70%,#7C2D12)] bg-[length:250%_auto] animate-[shimmerText_4s_linear_infinite] bg-clip-text text-transparent">
               The No. 01 Learning Management Platform in Sri Lanka
             </span>
           </div>
@@ -291,7 +291,7 @@ export default function Hero() {
         {/* ── Animated headline ── */}
         <h1 className={`
           relative w-full max-w-4xl mx-auto
-          font-['Satoshi',sans-serif] font-bold leading-[1.06] tracking-[-0.035em] select-none
+          font-['SF_Pro_Display','Satoshi',sans-serif] font-bold leading-[1.06] tracking-[-0.035em] select-none
           text-[clamp(24px,7.2vw,80px)]
           transition-opacity duration-700 ease-out delay-100
           ${visible ? 'opacity-100' : 'opacity-0'}
@@ -388,7 +388,7 @@ export default function Hero() {
           ].map((s, i, arr) => (
             <span key={s.lbl} className="flex items-center">
               <span className="flex flex-col items-center px-7 py-3.5">
-                <strong className="font-['Satoshi',sans-serif] text-[21px] font-extrabold text-[#C2410C] leading-tight">
+                <strong className="font-['SF_Pro_Display','Satoshi',sans-serif] text-[21px] font-extrabold text-[#C2410C] leading-tight">
                   {s.val}
                 </strong>
                 <span className="text-[11px] font-semibold text-[#7A6055] mt-0.5">{s.lbl}</span>

@@ -34,7 +34,7 @@ const PLANS = [
     border: 'border-[#EFE2D6]',
     accentBg: 'bg-[#FFF1E6]',
     accentText: 'text-[#C2410C]',
-    btnClass: 'border border-[#C2410C] text-[#C2410C] hover:bg-[#C2410C] hover:text-white',
+    btnClass: 'bg-white border border-[#FDC094] text-[#C2410C] shadow-sm hover:bg-[#FFEAD9] hover:text-[#9A3412] hover:border-[#C2410C]',
     features: [
       'Custom Subdomain (yourname.360lms.lk)',
       'Customised Website — Your Branding',
@@ -121,20 +121,141 @@ const PLANS = [
 ]
 
 const COMPARE_ROWS = [
-  { feature: 'Custom Subdomain', starter: true, standard: true, pro: true },
-  { feature: 'Custom Domain (yourinstitute.lk)', starter: false, standard: false, pro: true },
-  { feature: 'Active Students', starter: '500', standard: '1,000', pro: 'Unlimited' },
-  { feature: 'Unlimited Courses & Lessons', starter: true, standard: true, pro: true },
-  { feature: 'Payment Gateway', starter: 'Bank Transfer', standard: true, pro: true },
-  { feature: 'Own SMS Gateway', starter: false, standard: true, pro: true },
-  { feature: 'SMS Notifications Add-on', starter: 'LKR 200/mo', standard: 'Included', pro: 'Included' },
-  { feature: 'Staff Management', starter: 'LKR 350/mo', standard: 'Included', pro: 'Included' },
-  { feature: 'Video Piracy Watermark', starter: 'LKR 200/mo', standard: 'Included', pro: 'Included' },
-  { feature: 'Expenses Management', starter: false, standard: false, pro: true },
-  { feature: 'QR & NFC Attendance', starter: true, standard: true, pro: true },
-  { feature: 'Live Zoom Integration', starter: true, standard: true, pro: true },
-  { feature: 'Support Response Time', starter: '24hr', standard: '4hr', pro: '2hr' },
-  { feature: 'Dedicated Account Manager', starter: false, standard: false, pro: true },
+  {
+    feature: 'Custom Subdomain',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+      </svg>
+    ),
+    starter: true, standard: true, pro: true,
+  },
+  {
+    feature: 'Custom Domain (yourinstitute.lk)',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+      </svg>
+    ),
+    starter: false, standard: false, pro: true,
+  },
+  {
+    feature: 'Active Students',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+      </svg>
+    ),
+    starter: '500', standard: '1,000', pro: 'Unlimited',
+  },
+  {
+    feature: 'Unlimited Courses & Lessons',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+      </svg>
+    ),
+    starter: true, standard: true, pro: true,
+  },
+  {
+    feature: 'Payment Gateway',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/>
+      </svg>
+    ),
+    starter: 'Bank Transfer', standard: true, pro: true,
+  },
+  {
+    feature: 'Own SMS Gateway',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+      </svg>
+    ),
+    starter: false, standard: true, pro: true,
+  },
+  {
+    feature: 'SMS Notifications Add-on',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+      </svg>
+    ),
+    starter: 'LKR 200/mo', standard: 'Included', pro: 'Included',
+  },
+  {
+    feature: 'Staff Management',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+      </svg>
+    ),
+    starter: 'LKR 350/mo', standard: 'Included', pro: 'Included',
+  },
+  {
+    feature: 'Video Piracy Watermark',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      </svg>
+    ),
+    starter: 'LKR 200/mo', standard: 'Included', pro: 'Included',
+  },
+  {
+    feature: 'Expenses Management',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+      </svg>
+    ),
+    starter: false, standard: false, pro: true,
+  },
+  {
+    feature: 'QR & NFC Attendance',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+      </svg>
+    ),
+    starter: true, standard: true, pro: true,
+  },
+  {
+    feature: 'Live Zoom Integration',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+      </svg>
+    ),
+    starter: true, standard: true, pro: true,
+  },
+  {
+    feature: 'Support Response Time',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+      </svg>
+    ),
+    starter: '24hr', standard: '4hr', pro: '2hr',
+  },
+  {
+    feature: 'Dedicated Account Manager',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.5 2 2 0 0 1 3.6 1.32h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l1-.84a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+      </svg>
+    ),
+    starter: false, standard: false, pro: true,
+  },
+]
+
+/* ─── Row categories for visual grouping ─── */
+const ROW_GROUPS = [
+  { label: 'Platform', rows: [0, 1, 2, 3] },
+  { label: 'Payments & Messaging', rows: [4, 5, 6] },
+  { label: 'Add-ons & Features', rows: [7, 8, 9] },
+  { label: 'Productivity', rows: [10, 11] },
+  { label: 'Support', rows: [12, 13] },
 ]
 
 /* ─── Pricing FAQ Item (must be component, not inline hook) ─── */
@@ -160,12 +281,63 @@ function PricingFaqItem({ q, a }) {
 }
 
 /* ─── Sub-components ─── */
-function CheckIcon({ ok }) {
-  if (ok === true)
-    return <svg width="18" height="18" viewBox="0 0 18 18" fill="none" className="text-[#C2410C]"><circle cx="9" cy="9" r="9" fill="currentColor" fillOpacity=".12"/><path d="M5 9l3 3 5-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
+function CheckIcon({ ok, isStandard = false, isPro = false }) {
+  if (ok === true) {
+    if (isStandard)
+      return (
+        <div className="flex items-center justify-center w-8 h-8 rounded-full bg-[#C2410C]/10">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8l3.5 3.5 6.5-7" stroke="#C2410C" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </div>
+      )
+    if (isPro)
+      return (
+        <div className="flex items-center justify-center w-8 h-8 rounded-full bg-[#F97316]/10">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8l3.5 3.5 6.5-7" stroke="#F97316" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </div>
+      )
+    return (
+      <div className="flex items-center justify-center w-8 h-8 rounded-full bg-[#6B5A4E]/8">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8l3.5 3.5 6.5-7" stroke="#6B5A4E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      </div>
+    )
+  }
   if (ok === false)
-    return <svg width="18" height="18" viewBox="0 0 18 18" fill="none" className="text-[#D1C4BB]"><circle cx="9" cy="9" r="9" fill="currentColor" fillOpacity=".08"/><path d="M6 6l6 6M12 6l-6 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/></svg>
-  return <span className="text-[13px] font-semibold text-[#57483F]">{ok}</span>
+    return (
+      <div className="flex items-center justify-center w-8 h-8 rounded-full bg-[#EFE2D6]/60">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M2 2l8 8M10 2l-8 8" stroke="#C8B8AE" strokeWidth="1.8" strokeLinecap="round"/>
+        </svg>
+      </div>
+    )
+  /* string value */
+  const isAddon = typeof ok === 'string' && ok.startsWith('LKR')
+  const isIncluded = ok === 'Included'
+  if (isAddon)
+    return (
+      <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#FFF1E6] border border-[#F97316]/20 text-[11px] font-bold text-[#C2410C] whitespace-nowrap">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        {ok}
+      </span>
+    )
+  if (isIncluded)
+    return (
+      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#E8F7EE] border border-[#16A34A]/20 text-[11px] font-bold text-[#16A34A] whitespace-nowrap">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        Included
+      </span>
+    )
+  /* time / student count / other text */
+  return (
+    <span className="inline-flex items-center px-2.5 py-1 rounded-full bg-[#FFF9F4] border border-[#EFE2D6] text-[12px] font-bold text-[#4A3C33] whitespace-nowrap">
+      {ok}
+    </span>
+  )
 }
 
 function PlanCard({ plan, delay = 0, inView }) {
@@ -181,30 +353,31 @@ function PlanCard({ plan, delay = 0, inView }) {
         relative flex flex-col h-full rounded-3xl overflow-hidden
         bg-gradient-to-b ${plan.color}
         border ${plan.border}
-        shadow-[0_24px_60px_rgba(60,30,10,.12)]
         transition-all duration-700 ease-out
         ${inView ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-[0.97]'}
-        ${plan.id === 'standard' ? 'shadow-[0_32px_80px_rgba(194,65,12,.22)] ring-2 ring-[#C2410C]/20' : ''}
         hover:-translate-y-1
+        ${plan.id === 'standard'
+          ? 'shadow-[0_32px_80px_rgba(194,65,12,.22)] ring-2 ring-[#C2410C]/30 animate-[standardGlow_3s_ease-in-out_infinite]'
+          : plan.id === 'pro'
+          ? 'shadow-[0_32px_80px_rgba(249,115,22,.18)] ring-2 ring-[#F97316]/25 animate-[proGlow_3s_ease-in-out_infinite]'
+          : 'shadow-[0_24px_60px_rgba(60,30,10,.12)]'}
       `}
       style={{ transitionDelay: `${delay}ms` }}
     >
       {/* Badge — ribbon label from top edge */}
       {plan.badge && (
-        <div className="absolute top-0 right-6 z-10">
+        <div className="absolute top-0 right-6 z-10" style={{ animation: 'badgeFloat 2.8s ease-in-out infinite' }}>
           {/* Ribbon body */}
           <div className={`
             relative px-4 pt-2 pb-3.5 text-[10px] font-extrabold tracking-widest uppercase text-center min-w-[80px]
             ${plan.id === 'standard'
-              ? 'bg-[linear-gradient(110deg,#ffffff,45%,#fff1e6,55%,#ffffff)] bg-[length:200%_auto] animate-[shimmerText_3s_linear_infinite] text-[#C2410C]'
-              : 'bg-[linear-gradient(110deg,#EA580C,45%,#F97316,55%,#EA580C)] bg-[length:200%_auto] animate-[shimmerText_3s_linear_infinite] text-white'}
-            shadow-[0_4px_16px_rgba(0,0,0,0.18)]
+              ? 'bg-[linear-gradient(110deg,#ffffff,40%,#ffe4cc,55%,#ffffff)] bg-[length:200%_auto] animate-[shimmerText_2.5s_linear_infinite] text-[#C2410C]'
+              : 'bg-[linear-gradient(110deg,#EA580C,40%,#FDE68A,55%,#EA580C)] bg-[length:200%_auto] animate-[shimmerText_2.5s_linear_infinite] text-white'}
+            shadow-[0_4px_20px_rgba(0,0,0,0.24)]
           `}>
             {plan.badge}
             {/* Bottom notch — creates the folded ribbon tip */}
-            <div className={`
-              absolute -bottom-[9px] left-0 right-0 flex
-            `}>
+            <div className="absolute -bottom-[9px] left-0 right-0 flex">
               <div className={`w-1/2 h-[9px] ${plan.id === 'standard' ? 'bg-white' : 'bg-[#EA580C]'}`}
                 style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%)' }} />
               <div className={`w-1/2 h-[9px] ${plan.id === 'standard' ? 'bg-white' : 'bg-[#EA580C]'}`}
@@ -452,74 +625,198 @@ export default function PricingPage() {
           </div>
           <a
             href="#whatsapp"
-            className="shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#25D366] text-white font-bold text-[14px] shadow-[0_6px_18px_rgba(37,211,102,.28)] hover:bg-[#20BB5A] hover:-translate-y-0.5 transition-all duration-200"
+            className="group shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#25D366] text-white font-bold text-[14px] shadow-[0_6px_18px_rgba(37,211,102,.28)] hover:bg-[#20BB5A] hover:-translate-y-0.5 hover:shadow-[0_12px_28px_rgba(37,211,102,.40)] transition-all duration-200"
           >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-            </svg>
+            <span className="inline-flex transition-transform duration-300 ease-[cubic-bezier(.34,1.56,.64,1)] group-hover:scale-[1.35] group-hover:-rotate-12 group-hover:-translate-y-0.5">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+            </span>
             Chat on WhatsApp
           </a>
         </div>
       </section>
 
       {/* ── Feature Comparison ── */}
-      <section ref={tableRef} className="relative py-20" style={{ background: 'linear-gradient(180deg,#fff 0%,#fffaf5 100%)' }}>
-        <div className="max-w-5xl mx-auto px-6">
-          <div className={`text-center mb-12 transition-all duration-700 ease-out ${tableIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
+      <section ref={tableRef} className="relative py-20 overflow-hidden" style={{ background: 'linear-gradient(180deg,#fff 0%,#fffaf5 100%)' }}>
+        {/* bg blobs */}
+        <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
+          <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[900px] h-[400px] rounded-full opacity-40" style={{background:'radial-gradient(ellipse,rgba(249,115,22,.08) 0%,transparent 70%)'}} />
+        </div>
 
-            <h2 className="font-['Satoshi',sans-serif] font-bold text-[clamp(26px,3vw,42px)] leading-[1.12] tracking-[-0.03em] text-[#1C1410]">
-              Everything <span className="text-[#C2410C]">side by side</span>
+        <div className="relative max-w-5xl mx-auto px-4 sm:px-6">
+          {/* Heading */}
+          <div className={`text-center mb-14 transition-all duration-700 ease-out ${tableIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
+            <h2 className="font-['Satoshi',sans-serif] font-bold text-[clamp(28px,3.5vw,46px)] leading-[1.1] tracking-[-0.03em] text-[#1C1410]">
+              Everything <span className="text-transparent bg-clip-text bg-[linear-gradient(110deg,#C2410C,45%,#F97316,55%,#C2410C)] bg-[length:200%_auto] animate-[shimmerText_3s_linear_infinite]">side by side</span>
             </h2>
           </div>
 
-          <div className={`bg-white border border-[#EFE2D6] rounded-3xl overflow-hidden shadow-[0_16px_50px_rgba(60,30,10,.07)] transition-all duration-700 ease-out delay-100 ${tableIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            {/* Table header */}
-            <div className="grid grid-cols-4 bg-[#FFF9F4] border-b border-[#EFE2D6]">
-              <div className="px-6 py-4 text-[12px] font-bold uppercase tracking-wider text-[#6B5A4E]">Feature</div>
-              {PLANS.map(p => (
-                <div key={p.id} className={`px-4 py-4 text-center ${p.id === 'standard' ? 'bg-[#FFF1E6]' : ''}`}>
-                  <div className={`font-['Satoshi',sans-serif] font-extrabold text-[15px] ${p.id === 'standard' ? 'text-[#C2410C]' : 'text-[#1C1410]'}`}>{p.name}</div>
-                  {p.badge && <span className="text-[10px] font-bold text-[#C2410C] bg-[#FDDCC4] px-2 py-0.5 rounded-full">{p.badge}</span>}
+          {/* Table card */}
+          <div className={`relative rounded-3xl overflow-hidden transition-all duration-700 ease-out delay-100 ${tableIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+            style={{
+              background: 'linear-gradient(180deg, #FFF9F4 0%, #FFF1E6 100%)',
+              border: '1px solid #FDC094',
+              boxShadow: '0 24px 80px rgba(194,65,12,.12), 0 4px 16px rgba(194,65,12,.08)'
+            }}>
+
+            {/* ─── Sticky Plan Header ─── */}
+            <div className="grid grid-cols-4 sticky top-0 z-20 shadow-[0_4px_12px_rgba(194,65,12,.05)]">
+              {/* Feature label col */}
+              <div className="px-6 py-6 flex items-end border-b border-r border-[#FDC094]/50" style={{background:'linear-gradient(180deg,#FFF5EC 0%,#FFF1E6 100%)'}}>
+                <span className="text-[11px] font-bold uppercase tracking-widest text-[#C2410C]/60 mb-1">Feature</span>
+              </div>
+
+              {/* Starter */}
+              <div className="px-4 py-6 flex flex-col items-center gap-1.5 border-b border-r border-[#FDC094]/50 relative" style={{background:'linear-gradient(180deg,#FFF5EC 0%,#FFF1E6 100%)'}}>
+                <span className="font-['Satoshi',sans-serif] font-extrabold text-[16px] text-[#9A3412] mt-2 animate-pulse">Starter</span>
+                <span className="text-[11px] text-[#C2410C]/80 font-semibold">LKR 3,500/mo</span>
+              </div>
+
+              {/* Standard — highlighted */}
+              <div className="px-4 py-6 flex flex-col items-center gap-1.5 border-b border-r border-[#F97316]/30 relative overflow-hidden"
+                style={{background:'linear-gradient(180deg,#FFEDD5 0%,#FFD8B5 100%)'}}>
+                {/* Top accent bar */}
+                <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#F97316] to-[#C2410C]" />
+                
+                {/* Ribbon Badge */}
+                <div className="absolute top-0 right-4 z-10" style={{ animation: 'badgeFloat 2.8s ease-in-out infinite' }}>
+                  <div className="relative px-2 pt-1.5 pb-2 text-[9px] font-extrabold tracking-widest uppercase text-center min-w-[70px] bg-[linear-gradient(110deg,#ffffff,40%,#ffe4cc,55%,#ffffff)] bg-[length:200%_auto] animate-[shimmerText_2.5s_linear_infinite] text-[#C2410C] shadow-[0_4px_12px_rgba(194,65,12,.2)]">
+                     Most Popular
+                    <div className="absolute -bottom-[6px] left-0 right-0 flex">
+                      <div className="w-1/2 h-[6px] bg-white" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%)' }} />
+                      <div className="w-1/2 h-[6px] bg-white" style={{ clipPath: 'polygon(0 0, 0 100%, 100% 0)' }} />
+                    </div>
+                  </div>
                 </div>
-              ))}
+
+                <span className="font-['Satoshi',sans-serif] font-extrabold text-[17px] text-[#C2410C] mt-2 animate-pulse">Standard</span>
+                <span className="text-[11px] text-[#9A3412] font-semibold">LKR 5,750/mo</span>
+              </div>
+
+              {/* Pro Pack */}
+              <div className="px-4 py-6 flex flex-col items-center gap-1.5 border-b border-[#FDC094]/50 relative"
+                style={{background:'linear-gradient(180deg,#FFF5EC 0%,#FFF1E6 100%)'}}>
+                
+                {/* Ribbon Badge */}
+                <div className="absolute top-0 right-4 z-10" style={{ animation: 'badgeFloat 3.2s ease-in-out infinite' }}>
+                  <div className="relative px-2 pt-1.5 pb-2 text-[9px] font-extrabold tracking-widest uppercase text-center min-w-[70px] bg-[linear-gradient(110deg,#EA580C,40%,#FDE68A,55%,#EA580C)] bg-[length:200%_auto] animate-[shimmerText_2.5s_linear_infinite] text-white shadow-[0_4px_12px_rgba(194,65,12,.2)]">
+                     Best Value
+                    <div className="absolute -bottom-[6px] left-0 right-0 flex">
+                      <div className="w-1/2 h-[6px] bg-[#EA580C]" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%)' }} />
+                      <div className="w-1/2 h-[6px] bg-[#EA580C]" style={{ clipPath: 'polygon(0 0, 0 100%, 100% 0)' }} />
+                    </div>
+                  </div>
+                </div>
+
+                <span className="font-['Satoshi',sans-serif] font-extrabold text-[16px] text-[#9A3412] mt-2 animate-pulse">Pro Pack</span>
+                <span className="text-[11px] text-[#C2410C]/80 font-semibold">LKR 7,000/mo</span>
+              </div>
             </div>
 
-            {/* Rows */}
-            {COMPARE_ROWS.map((row, i) => (
-              <div
-                key={i}
-                className={`grid grid-cols-4 border-b border-[#F5ECE4] last:border-0 ${i % 2 === 0 ? '' : 'bg-[#FFFCFA]'}`}
-              >
-                <div className="px-6 py-3.5 text-[13.5px] font-medium text-[#4A3C33]">{row.feature}</div>
-                {['starter', 'standard', 'pro'].map(planId => (
-                  <div key={planId} className={`px-4 py-3.5 flex items-center justify-center ${planId === 'standard' ? 'bg-[#FFF1E6]/40' : ''}`}>
-                    <CheckIcon ok={row[planId]} />
+            {/* ─── Grouped Rows ─── */}
+            {ROW_GROUPS.map((group) => (
+              <div key={group.label}>
+                {/* Category separator */}
+                <div className="grid grid-cols-4 border-b border-[#FDC094]/40" style={{background:'linear-gradient(90deg,#FFEAD9 0%,#FFF5EC 100%)'}}>
+                  <div className="col-span-4 px-6 py-2.5 flex items-center gap-2">
+                    <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#C2410C]">{group.label}</span>
                   </div>
-                ))}
+                </div>
+
+                {/* Feature rows in this group */}
+                {group.rows.map((rowIdx, j) => {
+                  const row = COMPARE_ROWS[rowIdx]
+                  const isEven = j % 2 === 0
+                  return (
+                    <div
+                      key={rowIdx}
+                      className="grid grid-cols-4 border-b border-[#FDC094]/30 last:border-0 group/row hover:bg-[#FFEAD9] transition-colors duration-150"
+                      style={!isEven ? {background:'rgba(255,245,236,.6)'} : {}}
+                    >
+                      {/* Feature name + icon */}
+                      <div className="px-6 py-4 flex items-center gap-3 border-r border-[#FDC094]/30">
+                        <span className="shrink-0 w-7 h-7 rounded-lg flex items-center justify-center text-[#C2410C] bg-[#FFD8B5]/50 group-hover/row:bg-[#FFD8B5] transition-colors duration-150">
+                          {row.icon}
+                        </span>
+                        <span className="text-[13px] font-bold text-[#7C2D12] leading-snug">{row.feature}</span>
+                      </div>
+
+                      {/* Starter */}
+                      <div className="px-4 py-4 flex items-center justify-center border-r border-[#FDC094]/30">
+                        <CheckIcon ok={row.starter} />
+                      </div>
+
+                      {/* Standard — highlighted col */}
+                      <div className="px-4 py-4 flex items-center justify-center border-r border-[#F97316]/30"
+                        style={{background:'rgba(255,216,181,.3)'}}>
+                        <CheckIcon ok={row.standard} isStandard />
+                      </div>
+
+                      {/* Pro */}
+                      <div className="px-4 py-4 flex items-center justify-center">
+                        <CheckIcon ok={row.pro} isPro />
+                      </div>
+                    </div>
+                  )
+                })}
               </div>
             ))}
 
-            {/* CTA row */}
-            <div className="grid grid-cols-4 bg-[#FFF9F4] border-t border-[#EFE2D6] py-5">
-              <div />
-              {PLANS.map(p => (
-                <div key={p.id} className={`px-4 flex justify-center ${p.id === 'standard' ? 'bg-[#FFF1E6]/40' : ''}`}>
-                  <a
-                    href="#whatsapp"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`
-                      px-5 py-2.5 rounded-xl font-bold text-[13.5px] transition-all duration-200 hover:-translate-y-0.5
-                      ${p.id === 'standard'
-                        ? 'bg-[#C2410C] text-white shadow-[0_6px_18px_rgba(194,65,12,.30)] hover:bg-[#9A3412]'
-                        : 'border border-[#C2410C] text-[#C2410C] hover:bg-[#C2410C] hover:text-white'}
-                    `}
-                  >
-                    Get {p.name}
-                  </a>
-                </div>
-              ))}
+            {/* ─── CTA Row ─── */}
+            <div className="grid grid-cols-4 border-t-2 border-[#FDC094]" style={{background:'linear-gradient(180deg,#FFF5EC 0%,#FFEAD9 100%)'}}>
+              <div className="px-6 py-6 flex items-center">
+                <p className="text-[13px] font-bold text-[#9A3412] leading-relaxed">Ready to grow your institute?</p>
+              </div>
+
+              {/* Starter CTA */}
+              <div className="px-4 py-6 flex items-center justify-center border-r border-[#FDC094]/50">
+                <a
+                  href="#whatsapp"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-[13px] bg-white text-[#C2410C] hover:bg-[#FFD8B5] hover:text-[#9A3412] hover:-translate-y-0.5 transition-all duration-200 shadow-sm hover:shadow-[0_8px_20px_rgba(194,65,12,.15)] border border-[#FDC094]"
+                >
+                  Get Starter
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="group-hover:translate-x-0.5 transition-transform duration-150"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+
+              {/* Standard CTA — prominent */}
+              <div className="px-4 py-6 flex items-center justify-center border-r border-[#F97316]/30" style={{background:'rgba(255,216,181,.4)'}}>
+                <a
+                  href="#whatsapp"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-2 px-6 py-3 rounded-xl font-extrabold text-[14px] text-white hover:-translate-y-0.5 transition-all duration-200"
+                  style={{
+                    background:'linear-gradient(135deg,#F97316,#C2410C)',
+                    boxShadow:'0 8px 22px rgba(194,65,12,.4)'
+                  }}
+                >
+                  Get Standard
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className="group-hover:translate-x-1 transition-transform duration-150"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+
+              {/* Pro CTA */}
+              <div className="px-4 py-6 flex items-center justify-center">
+                <a
+                  href="#whatsapp"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-[13px] text-white hover:-translate-y-0.5 transition-all duration-200 border border-[#F97316]/20"
+                  style={{
+                    background:'linear-gradient(135deg,#F59E0B,#D97706)',
+                    boxShadow:'0 8px 22px rgba(217,119,6,.25)'
+                  }}
+                >
+                  Get Pro Pack
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="group-hover:translate-x-0.5 transition-transform duration-150"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+              </div>
             </div>
+
           </div>
         </div>
       </section>

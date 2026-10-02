@@ -85,8 +85,8 @@ export default function Hero() {
           <div className="relative inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-white/95 backdrop-blur-xl border border-[#FDBA74]/30 overflow-hidden w-full">
             {/* Shine effect */}
             <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/80 to-transparent group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
-            <span className="relative font-['Satoshi',sans-serif] text-[14px] sm:text-[14.5px] font-bold bg-gradient-to-r from-[#1C1410] to-[#57483F] bg-clip-text text-transparent tracking-tight">
-              The No. 1 Learning Management Platform in Sri Lanka
+            <span className="relative font-['Satoshi',sans-serif] text-[13px] sm:text-[13.5px] font-extrabold tracking-[0.04em] bg-[linear-gradient(110deg,#7C2D12,30%,#EA580C,50%,#C2410C,70%,#7C2D12)] bg-[length:250%_auto] animate-[shimmerText_4s_linear_infinite] bg-clip-text text-transparent">
+              The No. 01 Learning Management Platform in Sri Lanka
             </span>
             <span className="relative text-[14px] select-none group-hover:scale-125 group-hover:-rotate-12 transition-transform duration-300">🇱🇰</span>
           </div>

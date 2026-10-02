@@ -172,16 +172,39 @@ export default function Testimonials() {
         </h2>
 
         {/* Overall rating pill */}
-        <div className="mt-6 inline-flex items-center gap-3 px-5 py-3 bg-white rounded-2xl border border-[#EFE2D6] shadow-[0_4px_16px_rgba(60,30,10,.06)]">
-          <div className="flex gap-0.5">
+        <div className="mt-6 inline-flex items-center gap-3 px-5 py-3.5 bg-white rounded-2xl border border-[#EFE2D6] shadow-[0_4px_20px_rgba(249,115,22,.10)]">
+          <div className="flex gap-1">
             {Array.from({ length: 5 }).map((_, i) => (
-              <svg key={i} width="17" height="17" viewBox="0 0 20 20" fill="none" className="text-[#F97316]">
-                <path d="M10 1L12.39 7.26L19 7.64L14 12.14L15.62 19L10 15.77L4.38 19L6 12.14L1 7.64L7.61 7.26L10 1Z" fill="currentColor" />
+              <svg
+                key={i}
+                width="20" height="20" viewBox="0 0 20 20" fill="none"
+                style={{
+                  animation: `starPulse 2.4s ease-in-out infinite, starGlow 2.4s ease-in-out infinite`,
+                  animationDelay: `${i * 0.18}s`,
+                  transformOrigin: 'center',
+                }}
+              >
+                <defs>
+                  <linearGradient id={`starGrad${i}`} x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stopColor="#FDE68A" />
+                    <stop offset="50%" stopColor="#F97316" />
+                    <stop offset="100%" stopColor="#EA580C" />
+                  </linearGradient>
+                </defs>
+                <path
+                  d="M10 1L12.39 7.26L19 7.64L14 12.14L15.62 19L10 15.77L4.38 19L6 12.14L1 7.64L7.61 7.26L10 1Z"
+                  fill={`url(#starGrad${i})`}
+                  stroke="#F97316"
+                  strokeWidth="0.3"
+                />
               </svg>
             ))}
           </div>
-          <span className="font-['Satoshi',sans-serif] font-extrabold text-[18px] text-[#C2410C]">4.9</span>
-          <span className="text-[13px] text-[#6B5A4E] font-medium">Average rating · 36+ institutions</span>
+          <span className="font-['Satoshi',sans-serif] font-extrabold text-[20px] text-[#C2410C] tracking-tight">4.9</span>
+          <div className="flex flex-col items-start leading-tight">
+            <span className="text-[12px] font-bold text-[#1C1410]">Average rating</span>
+            <span className="text-[11.5px] text-[#6B5A4E] font-medium">36+ institutions</span>
+          </div>
         </div>
       </div>
 

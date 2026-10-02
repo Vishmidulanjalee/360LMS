@@ -41,7 +41,7 @@ export default function Platform() {
       <div className="wrap">
         <div className={`sec-head platform-head transition-all duration-700 ease-out ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
 
-          <h2>Everything your institute needs. In one platform.</h2>
+          <h2>Everything your institute needs. <span className="text-[#C2410C]">In one platform.</span></h2>
           <p>360 LMS brings teaching, learning, administration, communication, and payments together in one powerful ecosystem.</p>
         </div>
 

@@ -54,7 +54,7 @@ export default function Hero() {
   const current = LINES[idx]
 
   return (
-    <section className="relative overflow-hidden bg-[#FFF9F4]">
+    <section className="relative overflow-hidden bg-[#FFF9F4] min-h-screen flex flex-col">
 
       {/* ── Ambient orbs ── */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
@@ -64,14 +64,38 @@ export default function Hero() {
       </div>
 
       {/* ── Main content ── */}
-      <div className="relative z-10 max-w-5xl mx-auto px-6 pt-28 pb-32 flex flex-col items-center text-center">
+      <div className="relative z-10 max-w-5xl mx-auto px-6 pt-[130px] pb-16 flex flex-col items-center text-center flex-1">
 
 
+
+        {/* ── Top Badge ── */}
+        <div className={`
+          group relative mb-8 inline-flex p-[1.5px] rounded-full overflow-hidden
+          shadow-[0_0_30px_rgba(249,115,22,0.2)]
+          hover:shadow-[0_0_50px_rgba(249,115,22,0.4)]
+          transition-all duration-500 ease-out hover:-translate-y-1 cursor-default
+          ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
+        `}>
+          {/* Animated Magic Border */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200%] aspect-square bg-[conic-gradient(from_0deg,transparent_0%,transparent_35%,#F97316_50%,#EA580C_55%,transparent_65%,transparent_100%)] animate-[spin_2.5s_linear_infinite] opacity-80"></div>
+          
+          {/* Fallback glow */}
+          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#F97316]/50 to-[#EA580C]/50 blur-sm opacity-30 group-hover:opacity-60 transition-opacity duration-500"></div>
+
+          <div className="relative inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-white/95 backdrop-blur-xl border border-[#FDBA74]/30 overflow-hidden w-full">
+            {/* Shine effect */}
+            <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/80 to-transparent group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
+            <span className="relative font-['Satoshi',sans-serif] text-[13px] sm:text-[13.5px] font-extrabold tracking-[0.04em] bg-[linear-gradient(110deg,#7C2D12,30%,#EA580C,50%,#C2410C,70%,#7C2D12)] bg-[length:250%_auto] animate-[shimmerText_4s_linear_infinite] bg-clip-text text-transparent">
+              The No. 01 Learning Management Platform in Sri Lanka
+            </span>
+            <span className="relative text-[14px] select-none group-hover:scale-125 group-hover:-rotate-12 transition-transform duration-300">🇱🇰</span>
+          </div>
+        </div>
 
         {/* ── Animated headline ── */}
         <h1 className={`
           hero-h1-perspective
-          font-['Sora',sans-serif] font-bold leading-[1.06] tracking-[-0.035em] select-none
+          font-['Satoshi',sans-serif] font-bold leading-[1.06] tracking-[-0.035em] select-none
           transition-all duration-700 ease-out delay-100
           ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}
         `}>
@@ -112,7 +136,7 @@ export default function Hero() {
           transition-all duration-700 ease-out delay-300
           ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}
         `}>
-          Manage your classes and students smarter with an all-in-one platform built for modern educators and institutes.
+          <br></br> Manage your classes and students smarter with an all-in-one platform built for modern educators and institutes.
         </p>
 
         <p className={`
@@ -120,7 +144,7 @@ export default function Hero() {
           transition-all duration-700 ease-out delay-380
           ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}
         `}>
-          From Student &amp; Staff Management to Fee Tracking, Automated SMS, and Course Materials — all in one place.
+          From Student &amp; Staff Management to Fee Tracking, Automated SMS, and Course Materials - all in one place.
         </p>
 
         {/* CTAs */}
@@ -161,7 +185,7 @@ export default function Hero() {
           transition-all duration-700 ease-out delay-500
           ${visible ? 'opacity-100' : 'opacity-0'}
         `}>
-          Built for modern educators, institutes, and learning communities.
+          <br></br> Built for modern educators, institutes, and learning communities.
         </p>
 
         {/* Stats strip */}
@@ -180,7 +204,7 @@ export default function Hero() {
           ].map((s, i, arr) => (
             <span key={s.lbl} className="flex items-center">
               <span className="flex flex-col items-center px-7 py-3">
-                <strong className="font-['Sora',sans-serif] text-[21px] font-extrabold text-[#C2410C] leading-tight">
+                <strong className="font-['Satoshi',sans-serif] text-[21px] font-extrabold text-[#C2410C] leading-tight">
                   {s.val}
                 </strong>
                 <span className="text-[11px] font-semibold text-[#6B5A4E] mt-0.5">{s.lbl}</span>
@@ -244,7 +268,7 @@ export default function Hero() {
               {/* Main */}
               <div className="flex-1 min-w-0 p-4 flex flex-col gap-3">
                 <div className="flex justify-between items-baseline">
-                  <strong className="font-['Sora',sans-serif] text-[14px]">Institute Overview</strong>
+                  <strong className="font-['Satoshi',sans-serif] text-[14px]">Institute Overview</strong>
                   <span className="text-[10px] text-[#6B5A4E]">This term</span>
                 </div>
 
@@ -262,7 +286,7 @@ export default function Hero() {
                         : 'border-[#F5ECE4]'}`}
                     >
                       <div className={`text-[9.5px] ${k.hot ? 'text-white/80' : 'text-[#6B5A4E]'}`}>{k.lbl}</div>
-                      <div className={`font-['Sora',sans-serif] text-[17px] font-bold mt-0.5 ${k.hot ? 'text-white' : ''}`}>{k.val}</div>
+                      <div className={`font-['Satoshi',sans-serif] text-[17px] font-bold mt-0.5 ${k.hot ? 'text-white' : ''}`}>{k.val}</div>
                       <div className={`text-[8.5px] font-semibold mt-0.5 ${k.hot ? 'text-white/90' : k.subC}`}>{k.sub}</div>
                     </div>
                   ))}

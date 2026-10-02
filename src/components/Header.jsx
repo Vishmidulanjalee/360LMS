@@ -1,110 +1,180 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 
 const NAV_LINKS = [
-  { href: '#platform',  label: 'Platform'    },
-  { href: '#ecosystem', label: 'Features'    },
-  { href: '#solutions', label: 'Solutions'   },
-  { href: '#why',       label: 'Why 360 LMS' },
-  { href: '#cta',       label: 'Contact'     },
+  { href: '/#platform',  label: 'Platform'    },
+  { href: '/#ecosystem', label: 'Features'    },
+  { href: '/#why',       label: 'Why 360 LMS' },
+  { href: '/#solutions', label: 'Solutions'   },
+  { href: '/#faq',       label: 'FAQ'         },
+  { href: '/#cta',       label: 'Contact'     },
 ]
 
 export default function Header() {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen]         = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const location = useLocation()
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 18)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  useEffect(() => { setOpen(false) }, [location.pathname])
+
+  const isPricing = location.pathname === '/pricing'
+
+  const pillStyle = {
+    background: scrolled ? 'rgba(255,252,250,0.88)' : 'rgba(255,252,250,0.75)',
+    backdropFilter: 'blur(28px) saturate(200%)',
+    WebkitBackdropFilter: 'blur(28px) saturate(200%)',
+    border: '1px solid rgba(241,228,216,0.75)',
+    boxShadow: scrolled
+      ? '0 8px 40px rgba(60,30,10,.15), 0 1px 0 rgba(255,255,255,.7) inset'
+      : '0 4px 24px rgba(60,30,10,.09), 0 1px 0 rgba(255,255,255,.6) inset',
+  }
 
   return (
-    <header className="nav" style={{ position: 'sticky', top: 0, zIndex: 50 }}>
-      {/* ── Desktop bar ── */}
-      <div
-        className="wrap"
-        style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: 76, position: 'relative' }}
-      >
-        {/* Logo — left */}
-        <a href="/" className="flex items-center justify-self-start">
-          <img src="/360logo.png" alt="360 LMS" className="h-15 w-auto" />
-        </a>
+    <>
+      {/* ════════════════════════════════════════
+          DESKTOP — floating pill, centered
+          MOBILE  — full-width bar (logo L, toggle R)
+         ════════════════════════════════════════ */}
+      <header className="fixed top-0 left-0 right-0 z-50 pointer-events-none" style={{ paddingTop: '14px' }}>
 
-        {/* Desktop nav — absolute center, hidden on mobile */}
-        <nav aria-label="Main" className="hidden md:block absolute left-1/2 -translate-x-1/2">
-          <ul className="flex items-center gap-1 list-none m-0 p-0">
-            {NAV_LINKS.map(({ href, label }) => (
-              <li key={href}>
+        {/* ── Desktop pill (hidden on mobile) ── */}
+        <div className="hidden lg:flex justify-center">
+          <div
+            className="pointer-events-auto flex items-center gap-1 px-3 py-2 rounded-[999px] transition-all duration-300"
+            style={pillStyle}
+          >
+            {/* Logo */}
+            <Link to="/" className="flex items-center shrink-0 mr-2">
+              <img src="/360logo.png" alt="360 LMS" className="h-9 w-auto" />
+            </Link>
+
+            {/* Nav links */}
+            <nav aria-label="Main" className="flex items-center">
+              {NAV_LINKS.map(({ href, label }) => (
                 <a
+                  key={href}
                   href={href}
-                  className="relative px-4 py-2 rounded-xl text-[14.5px] font-semibold text-[#4A3C33]
-                    transition-all duration-200 hover:text-[#C2410C] hover:bg-[#FFF1E6] group"
+                  className="px-3.5 py-1.5 rounded-full text-[13.5px] font-semibold text-[#4A3C33] transition-all duration-200 hover:text-[#C2410C] hover:bg-[#F97316]/10"
                 >
                   {label}
-                  <span className="absolute bottom-1 left-4 right-4 h-[2px] rounded-full bg-[#F97316]
-                    scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left" />
                 </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
+              ))}
+              <Link
+                to="/pricing"
+                className={`px-3.5 py-1.5 rounded-full text-[13.5px] font-semibold transition-all duration-200 ${
+                  isPricing
+                    ? 'text-[#C2410C] bg-[#FFF1E6]'
+                    : 'text-[#4A3C33] hover:text-[#C2410C] hover:bg-[#F97316]/10'
+                }`}
+              >
+                Pricing
+              </Link>
+            </nav>
 
-        {/* Right side: Desktop CTAs + Hamburger */}
-        <div className="flex items-center gap-2 justify-self-end">
-          {/* Desktop CTA buttons */}
-          <a href="#cta" className="hidden md:inline-flex px-4 py-2 rounded-xl text-[14px] font-semibold
-            text-[#4A3C33] hover:text-[#C2410C] hover:bg-[#FFF1E6] transition-all duration-200">
-            Sign in
-          </a>
-          <a href="#cta" className="hidden md:inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl
-            bg-[#C2410C] text-white font-bold text-[14px]
-            shadow-[0_6px_20px_rgba(194,65,12,.32)]
-            hover:bg-[#9A3412] hover:-translate-y-0.5 hover:shadow-[0_10px_26px_rgba(194,65,12,.42)]
-            transition-all duration-200">
-            Get Started <span className="text-base">→</span>
-          </a>
-
-          {/* Hamburger — right side, mobile only */}
-          <button
-            className="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-xl
-              border border-[#EDE0D4] bg-white gap-1.5 transition-all duration-200
-              hover:border-[#F97316]/40 hover:bg-[#FFF9F5]"
-            onClick={() => setOpen(o => !o)}
-            aria-label="Toggle menu"
-          >
-            <span className={`block w-5 h-0.5 bg-[#1C1410] rounded-full transition-all duration-300 origin-center
-              ${open ? 'rotate-45 translate-y-2' : ''}`} />
-            <span className={`block w-5 h-0.5 bg-[#1C1410] rounded-full transition-all duration-300
-              ${open ? 'opacity-0 scale-x-0' : ''}`} />
-            <span className={`block w-5 h-0.5 bg-[#1C1410] rounded-full transition-all duration-300 origin-center
-              ${open ? '-rotate-45 -translate-y-2' : ''}`} />
-          </button>
+            {/* CTAs */}
+            <div className="flex items-center gap-2 ml-2">
+              <a
+                href="/#cta"
+                className="px-4 py-1.5 rounded-full text-[13.5px] font-semibold text-[#4A3C33] hover:text-[#C2410C] hover:bg-[#F97316]/10 transition-all duration-200"
+              >
+                Sign in
+              </a>
+              <a
+                href="/#cta"
+                className="px-5 py-2 rounded-full bg-[#C2410C] text-white font-bold text-[13.5px] shadow-[0_4px_14px_rgba(194,65,12,.35)] hover:bg-[#9A3412] hover:shadow-[0_6px_20px_rgba(194,65,12,.45)] hover:-translate-y-0.5 transition-all duration-200"
+              >
+                Get Started →
+              </a>
+            </div>
+          </div>
         </div>
-      </div>
 
-      {/* ── Mobile dropdown menu ── */}
-      <div className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out
-        ${open ? 'max-h-[420px] opacity-100' : 'max-h-0 opacity-0'}`}>
-        <div className="bg-white/95 backdrop-blur-md border-t border-[#F1E4D8] px-5 py-4 flex flex-col gap-1">
-          {NAV_LINKS.map(({ href, label }) => (
-            <a
-              key={href}
-              href={href}
-              onClick={() => setOpen(false)}
-              className="px-4 py-3 rounded-xl text-[15px] font-semibold text-[#4A3C33]
-                hover:text-[#C2410C] hover:bg-[#FFF1E6] transition-all duration-200"
+        {/* ── Mobile bar (full-width, logo left, toggle right) ── */}
+        <div className="lg:hidden pointer-events-auto mx-4 rounded-2xl transition-all duration-300" style={pillStyle}>
+          <div className="flex items-center justify-between px-4 h-14">
+            {/* Logo — LEFT */}
+            <Link to="/" className="flex items-center shrink-0">
+              <img src="/360logo.png" alt="360 LMS" className="h-8 w-auto" />
+            </Link>
+
+            {/* Hamburger — RIGHT */}
+            <button
+              className="flex flex-col justify-center items-center w-9 h-9 rounded-xl bg-[#FFF1E6] hover:bg-[#FDDCC4] gap-1.5 transition-all duration-200"
+              onClick={() => setOpen(o => !o)}
+              aria-label="Toggle menu"
             >
-              {label}
-            </a>
-          ))}
-          <div className="mt-3 pt-3 border-t border-[#F1E4D8] flex flex-col gap-2">
-            <a href="#cta" onClick={() => setOpen(false)}
-              className="px-4 py-3 rounded-xl text-[15px] font-semibold text-[#4A3C33]
-                hover:text-[#C2410C] hover:bg-[#FFF1E6] transition-all duration-200 text-center">
-              Sign in
-            </a>
-            <a href="#cta" onClick={() => setOpen(false)}
-              className="px-4 py-3 rounded-xl bg-[#C2410C] text-white font-bold text-[15px]
-                text-center shadow-[0_6px_20px_rgba(194,65,12,.32)]
-                hover:bg-[#9A3412] transition-all duration-200">
-              Get Started →
-            </a>
+              <span className={`block w-[18px] h-[2px] bg-[#C2410C] rounded-full transition-all duration-300 origin-center ${open ? 'rotate-45 translate-y-[8px]' : ''}`} />
+              <span className={`block w-[18px] h-[2px] bg-[#C2410C] rounded-full transition-all duration-300 ${open ? 'opacity-0 scale-x-0' : ''}`} />
+              <span className={`block w-[18px] h-[2px] bg-[#C2410C] rounded-full transition-all duration-300 origin-center ${open ? '-rotate-45 -translate-y-[8px]' : ''}`} />
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* ── Mobile Dropdown menu ── */}
+      <div
+        className={`
+          fixed top-0 left-0 right-0 z-40
+          transition-all duration-300 ease-in-out pointer-events-none
+          ${open ? 'translate-y-[86px] opacity-100' : 'translate-y-[72px] opacity-0'}
+        `}
+        style={{ padding: '4px 16px 0' }}
+      >
+        <div
+          className={`pointer-events-auto rounded-3xl overflow-hidden ${open ? '' : 'pointer-events-none'}`}
+          style={{
+            background: 'rgba(255,252,250,0.97)',
+            backdropFilter: 'blur(32px) saturate(200%)',
+            WebkitBackdropFilter: 'blur(32px) saturate(200%)',
+            border: '1px solid rgba(241,228,216,0.85)',
+            boxShadow: '0 24px 60px rgba(60,30,10,.18)',
+          }}
+        >
+          <div className="p-3 flex flex-col gap-0.5">
+            {NAV_LINKS.map(({ href, label }) => (
+              <a
+                key={href}
+                href={href}
+                onClick={() => setOpen(false)}
+                className="px-4 py-3 rounded-xl text-[14.5px] font-semibold text-[#4A3C33] hover:text-[#C2410C] hover:bg-[#FFF1E6] transition-all duration-200"
+              >
+                {label}
+              </a>
+            ))}
+            <Link
+              to="/pricing"
+              onClick={() => setOpen(false)}
+              className={`px-4 py-3 rounded-xl text-[14.5px] font-semibold transition-all duration-200 ${isPricing ? 'text-[#C2410C] bg-[#FFF1E6]' : 'text-[#4A3C33] hover:text-[#C2410C] hover:bg-[#FFF1E6]'}`}
+            >
+              Pricing
+            </Link>
+
+            <div className="mt-2 pt-2.5 border-t border-[#F1E4D8] flex flex-col gap-1.5">
+              <a
+                href="/#cta"
+                onClick={() => setOpen(false)}
+                className="px-4 py-3 rounded-xl text-[14.5px] font-semibold text-[#4A3C33] hover:text-[#C2410C] hover:bg-[#FFF1E6] transition-all duration-200 text-center"
+              >
+                Sign in
+              </a>
+              <a
+                href="/#cta"
+                onClick={() => setOpen(false)}
+                className="px-4 py-3.5 rounded-xl bg-[#C2410C] text-white font-bold text-[14.5px] text-center shadow-[0_6px_20px_rgba(194,65,12,.32)] hover:bg-[#9A3412] transition-all duration-200"
+              >
+                Get Started →
+              </a>
+            </div>
           </div>
         </div>
       </div>
-    </header>
+
+    </>
   )
 }

@@ -1,10 +1,10 @@
 import { memo, useEffect, useRef, useState } from 'react'
 
 /* ── words that cycle (only the suffix animates) ── */
-const SUFFIXES = ['Learning', 'Growth', 'Success', 'Everything']
+const SUFFIXES = ['Learning', 'Progress', 'Success', 'Everything']
 
-/* Animates each character of the suffix word */
-function SplitText({ text, className = '' }) {
+/* Animates each character of a word */
+function SplitText({ text, className = '', delay = 0 }) {
   return (
     <>
       {text.split('').map((ch, i) => (
@@ -13,7 +13,7 @@ function SplitText({ text, className = '' }) {
           className={`inline-block ${className}`}
           style={{
             animation: `charDrop .55s cubic-bezier(.22,.68,0,1.2) both`,
-            animationDelay: `${i * 32}ms`,
+            animationDelay: `${delay + i * 32}ms`,
           }}
         >
           {ch === ' ' ? '\u00A0' : ch}
@@ -27,19 +27,17 @@ function SplitText({ text, className = '' }) {
    DashboardMockup — wrapped in memo so it NEVER re-renders
    when the parent Hero's phase/idx state changes.
 ───────────────────────────────────────────────────────── */
-const DashboardMockup = memo(function DashboardMockup({ dashRef, dashVisible, dashSettled }) {
-  const style = dashSettled
-    ? { opacity: 1, transform: 'translateY(0px) scale(1)', transition: 'none' }
-    : dashVisible
-    ? {
-        opacity: 1,
-        transform: 'translateY(0px) scale(1)',
-        transition: 'opacity 0.85s cubic-bezier(.22,.68,0,1.2), transform 0.95s cubic-bezier(.22,.68,0,1.2)',
-      }
-    : { opacity: 0, transform: 'translateY(64px) scale(0.88)', transition: 'none' }
-
+const DashboardMockup = memo(function DashboardMockup({ dashRef, dashVisible }) {
   return (
-    <div ref={dashRef} className="mt-20 w-full max-w-4xl relative" style={style}>
+    <div
+      ref={dashRef}
+      className="mt-20 w-full max-w-4xl relative"
+      style={{
+        opacity: dashVisible ? 1 : 0,
+        transform: 'none',
+        transition: dashVisible ? 'opacity 0.6s ease' : 'none',
+      }}
+    >
       {/* Glow under card */}
       <div
         className="absolute inset-x-8 -top-4 h-28 blur-3xl rounded-full"
@@ -201,7 +199,6 @@ export default function Hero() {
   const [phase, setPhase]   = useState('in')   // 'in' | 'hold' | 'out'
   const [visible, setVisible] = useState(false)
   const [dashVisible, setDashVisible] = useState(false)
-  const [dashSettled, setDashSettled] = useState(false)
   const dashRef = useRef(null)
 
   /* entrance */
@@ -210,7 +207,7 @@ export default function Hero() {
     return () => clearTimeout(t)
   }, [])
 
-  /* scroll-triggered dashboard pop-up */
+  /* fade dashboard in once, without any slide/scale motion */
   useEffect(() => {
     const el = dashRef.current
     if (!el) return
@@ -218,7 +215,6 @@ export default function Hero() {
       ([entry]) => {
         if (entry.isIntersecting) {
           setDashVisible(true)
-          setTimeout(() => setDashSettled(true), 1000)
           obs.disconnect()
         }
       },
@@ -294,61 +290,46 @@ export default function Hero() {
 
         {/* ── Animated headline ── */}
         <h1 className={`
-          w-full max-w-4xl mx-auto flex flex-wrap justify-center items-center gap-x-3 sm:gap-x-4
+          relative w-full max-w-4xl mx-auto
           font-['Satoshi',sans-serif] font-bold leading-[1.06] tracking-[-0.035em] select-none
+          text-[clamp(24px,7.2vw,80px)]
           transition-opacity duration-700 ease-out delay-100
           ${visible ? 'opacity-100' : 'opacity-0'}
         `}>
-
-        {/* <h1 className={`
-  w-full max-w-4xl mx-auto
-  flex flex-nowrap justify-center items-center
-  gap-x-3 sm:gap-x-4
-  font-['Satoshi',sans-serif] font-bold leading-[1.06]
-  tracking-[-0.035em] select-none
-  transition-opacity duration-700 ease-out delay-100
-  ${visible ? 'opacity-100' : 'opacity-0'}
-`}> */}
-          {/* "Manage" — completely static, never animates */}
-          <span className="text-[clamp(52px,7.5vw,96px)] text-[#3D1A08] whitespace-nowrap">
-            Manage
+          {/* Reserves width for the longest phrase so the dashboard does not shift */}
+          <span className="invisible whitespace-nowrap" aria-hidden="true">
+            Manage Everything
           </span>
 
-          {/* Suffix word — animates in/out */}
           <span
-            className="overflow-hidden"
-            style={{ height: 'calc(1.06 * clamp(52px,7.5vw,96px))' }}
+            className={`
+              absolute inset-0 flex flex-nowrap justify-center items-center gap-x-2 sm:gap-x-4
+              transition-all duration-350 ease-in
+              ${phase === 'out' ? 'opacity-0 -translate-y-4' : 'opacity-100 translate-y-0'}
+            `}
           >
-
-          {/* <span
-  className="inline-block overflow-hidden w-[50em] text-left"
-  style={{
-    height: 'calc(1.06 * clamp(52px,7.5vw,96px))',
-  }}
-> */}
-            <span
-              className={`
-                block text-[clamp(52px,7.5vw,96px)]
-                transition-all duration-350 ease-in
-                ${phase === 'out'
-                  ? 'opacity-0 -translate-y-4'
-                  : 'opacity-100 translate-y-0'
-                }
-              `}
-            >
-              {phase !== 'out' && (
-                <SplitText
-                  key={idx}
-                  text={SUFFIXES[idx]}
-                  className="text-transparent bg-clip-text bg-[linear-gradient(110deg,#C2410C,45%,#F97316,60%,#C2410C)] bg-[length:200%_auto] animate-[shimmerText_3s_linear_infinite]"
-                />
-              )}
-              {phase === 'out' && (
-                <span className="text-transparent bg-clip-text bg-[linear-gradient(110deg,#C2410C,45%,#F97316,60%,#C2410C)]">
+            {phase !== 'out' ? (
+              <>
+                <span className="text-[#3D1A08] whitespace-nowrap">
+                  <SplitText key={`manage-${idx}`} text="Manage" />
+                </span>
+                <span className="whitespace-nowrap">
+                  <SplitText
+                    key={`suffix-${idx}`}
+                    text={SUFFIXES[idx]}
+                    delay={6 * 32}
+                    className="text-transparent bg-clip-text bg-[linear-gradient(110deg,#C2410C,45%,#F97316,60%,#C2410C)] bg-[length:200%_auto] animate-[shimmerText_3s_linear_infinite]"
+                  />
+                </span>
+              </>
+            ) : (
+              <>
+                <span className="text-[#3D1A08] whitespace-nowrap">Manage</span>
+                <span className="whitespace-nowrap text-transparent bg-clip-text bg-[linear-gradient(110deg,#C2410C,45%,#F97316,60%,#C2410C)]">
                   {SUFFIXES[idx]}
                 </span>
-              )}
-            </span>
+              </>
+            )}
           </span>
         </h1>
 
@@ -421,7 +402,6 @@ export default function Hero() {
         <DashboardMockup
           dashRef={dashRef}
           dashVisible={dashVisible}
-          dashSettled={dashSettled}
         />
 
       </div>

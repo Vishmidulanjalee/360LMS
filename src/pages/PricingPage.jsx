@@ -340,6 +340,60 @@ function CheckIcon({ ok, isStandard = false, isPro = false }) {
   )
 }
 
+/* ─── ModernCheckIcon — dark-theme variant for the glassmorphism table ─── */
+function ModernCheckIcon({ ok, theme = 'neutral' }) {
+  const colors = {
+    orange: { check: '#F97316', bg: 'rgba(249,115,22,0.15)', border: 'rgba(249,115,22,0.3)', cross: 'rgba(255,255,255,0.15)', crossStroke: 'rgba(255,255,255,0.2)', text: '#F97316', textBg: 'rgba(249,115,22,0.12)', textBorder: 'rgba(249,115,22,0.25)', included: '#F97316', includedBg: 'rgba(249,115,22,0.12)', includedBorder: 'rgba(249,115,22,0.25)' },
+    gold:   { check: '#FDBA74', bg: 'rgba(253,186,116,0.12)', border: 'rgba(253,186,116,0.25)', cross: 'rgba(255,255,255,0.1)', crossStroke: 'rgba(255,255,255,0.15)', text: '#FDBA74', textBg: 'rgba(253,186,116,0.1)', textBorder: 'rgba(253,186,116,0.2)', included: '#FDBA74', includedBg: 'rgba(253,186,116,0.1)', includedBorder: 'rgba(253,186,116,0.2)' },
+    neutral:{ check: 'rgba(255,255,255,0.7)', bg: 'rgba(255,255,255,0.08)', border: 'rgba(255,255,255,0.15)', cross: 'rgba(255,255,255,0.06)', crossStroke: 'rgba(255,255,255,0.12)', text: 'rgba(255,255,255,0.65)', textBg: 'rgba(255,255,255,0.06)', textBorder: 'rgba(255,255,255,0.12)', included: 'rgba(255,255,255,0.7)', includedBg: 'rgba(255,255,255,0.06)', includedBorder: 'rgba(255,255,255,0.12)' },
+  }
+  const c = colors[theme]
+
+  if (ok === true)
+    return (
+      <div className="w-8 h-8 rounded-full flex items-center justify-center transition-transform duration-200 hover:scale-110"
+        style={{ background: c.bg, border: `1px solid ${c.border}` }}>
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8l3.5 3.5 6.5-7" stroke={c.check} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      </div>
+    )
+  if (ok === false)
+    return (
+      <div className="w-8 h-8 rounded-full flex items-center justify-center"
+        style={{ background: c.cross, border: `1px solid ${c.crossStroke}` }}>
+        <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
+          <path d="M2 2l8 8M10 2l-8 8" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5" strokeLinecap="round"/>
+        </svg>
+      </div>
+    )
+  /* string values */
+  const isAddon = typeof ok === 'string' && ok.startsWith('LKR')
+  const isIncluded = ok === 'Included'
+  if (isAddon)
+    return (
+      <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold whitespace-nowrap"
+        style={{ background: 'rgba(249,115,22,0.1)', border: '1px solid rgba(249,115,22,0.2)', color: '#FDBA74' }}>
+        <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        {ok}
+      </span>
+    )
+  if (isIncluded)
+    return (
+      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold whitespace-nowrap"
+        style={{ background: c.includedBg, border: `1px solid ${c.includedBorder}`, color: c.included }}>
+        <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        Included
+      </span>
+    )
+  return (
+    <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold whitespace-nowrap"
+      style={{ background: c.textBg, border: `1px solid ${c.textBorder}`, color: c.text }}>
+      {ok}
+    </span>
+  )
+}
+
 function PlanCard({ plan, delay = 0, inView }) {
   const [students, setStudents] = useState(0)
   const isLight = plan.id === 'starter'
@@ -621,7 +675,7 @@ export default function PricingPage() {
         >
           <div>
             <p className="font-['Satoshi',sans-serif] font-bold text-[15px] text-[#1C1410]">Not sure which plan is right for you?</p>
-            <p className="text-[13px] text-[#6B5A4E] mt-0.5">Our team will help you find the perfect fit for your institute — for free.</p>
+            <p className="text-[13px] text-[#6B5A4E] mt-0.5">Our team will help you find the perfect fit for your institute - for free.</p>
           </div>
           <a
             href="#whatsapp"

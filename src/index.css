@@ -83,7 +83,7 @@
 .pf-num{display:inline-block;font-size:12px;font-weight:700;color:var(--orange-strong);background:#fff;border:1px solid #FBD5B5;border-radius:999px;padding:3px 10px;margin-bottom:14px}
 .pf-text p{font-size:18px;line-height:1.45;color:#3b2d24}
 .pf-text strong{color:var(--ink);font-weight:700}
-.pf-shot{margin:auto 26px 0;height:230px;border-radius:14px 14px 0 0;overflow:hidden;background:#fff;box-shadow:0 -4px 30px rgba(194,65,12,.12);border:1px solid #FBD5B5;border-bottom:0}
+.pf-shot{margin:auto 26px 26px;height:230px;border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 -4px 30px rgba(194,65,12,.12);border:1px solid #FBD5B5}
 .pf-shot img{width:100%;height:100%;object-fit:cover;object-position:top left;transition:transform .8s cubic-bezier(.2,.8,.2,1)}
 .pf-card:hover .pf-shot img{transform:scale(1.06) translateY(-4px)}
 @media (max-width:1024px){
@@ -96,7 +96,7 @@
   .pf-grid{grid-template-columns:1fr;gap:18px}
   .pf-text{padding:22px 20px 14px}
   .pf-text p{font-size:16px}
-  .pf-shot{margin:auto 20px 0;height:200px}
+  .pf-shot{margin:auto 20px 20px;height:200px}
 }
 @media (prefers-reduced-motion:reduce){.pf-blob{animation:none}.pf-card,.pf-head{transition:none}}
 

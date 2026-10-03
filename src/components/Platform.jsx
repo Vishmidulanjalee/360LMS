@@ -43,7 +43,6 @@ export default function Platform() {
       <div className="wrap">
         <div className="pf-head">
           <div className="pf-title">
-            <span className="pf-eyebrow"><i /> Core platform</span>
             <h2>
               Everything your institute needs.
               <span> In one platform.</span>

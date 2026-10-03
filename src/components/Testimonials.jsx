@@ -228,7 +228,7 @@ export default function Testimonials() {
         />
 
         {/* Row 1 */}
-        <div className="overflow-hidden mb-4">
+        <div className="overflow-hidden">
           <div
             className="flex gap-4 w-max py-2"
             style={{
@@ -240,18 +240,6 @@ export default function Testimonials() {
           </div>
         </div>
 
-        {/* Row 2 — reverse */}
-        <div className="overflow-hidden">
-          <div
-            className="flex gap-4 w-max py-2"
-            style={{
-              animation: 'marqueeRev 50s linear infinite',
-              animationPlayState: paused ? 'paused' : 'running',
-            }}
-          >
-            {[...doubled].reverse().map((t, i) => <TestimonialCard key={i} t={t} />)}
-          </div>
-        </div>
       </div>
     </section>
   )

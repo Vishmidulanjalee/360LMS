@@ -90,13 +90,16 @@
   .pf-grid{grid-template-columns:repeat(2,1fr)}
   .pf-head{flex-direction:column;align-items:flex-start;gap:20px}
   .pf-head>p{max-width:560px}
+  .pf-shot{height:auto}
+  .pf-shot img{height:auto;object-fit:contain;display:block}
+  .pf-card:hover .pf-shot img{transform:scale(1.03)}
 }
 @media (max-width:640px){
   .pf-sec{padding:70px 0}
   .pf-grid{grid-template-columns:1fr;gap:18px}
   .pf-text{padding:22px 20px 14px}
   .pf-text p{font-size:16px}
-  .pf-shot{margin:auto 20px 20px;height:200px}
+  .pf-shot{margin:auto 20px 20px;height:auto}
 }
 @media (prefers-reduced-motion:reduce){.pf-blob{animation:none}.pf-card,.pf-head{transition:none}}
 

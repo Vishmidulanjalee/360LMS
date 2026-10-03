@@ -147,27 +147,48 @@ export default function Solutions() {
     >
       {/* keyframes injected once */}
       <style>{`
-        @keyframes solSpin   { to { transform: rotate(360deg); } }
+        @keyframes solSpin { to { transform: rotate(360deg); } }
         @keyframes solSlideIn {
-          from { opacity: 0; transform: translateY(18px); }
+          from { opacity: 0; transform: translateY(16px); }
           to   { opacity: 1; transform: translateY(0); }
         }
         @keyframes solFadeImg {
-          from { opacity: 0; transform: scale(1.04); }
+          from { opacity: 0; transform: scale(1.025); }
           to   { opacity: 1; transform: scale(1); }
         }
-        .sol-tab-btn:hover .sol-tab-bg { opacity: 1 !important; }
-        .sol-tab-btn:hover .sol-tab-label { color: #C2410C !important; }
-        .sol-tab-btn:hover .sol-tab-icon  { color: #C2410C !important; }
+        @keyframes shimmerSol {
+          0%   { background-position: 200% 0; }
+          100% { background-position: -200% 0; }
+        }
+        .sol-tab-btn:hover .sol-tab-bg    { opacity: 1 !important; }
+        .sol-tab-btn:hover .sol-tab-label  { color: #C2410C !important; }
+        .sol-tab-btn:hover .sol-tab-icon   { color: #C2410C !important; }
 
+        /* ── Mobile responsive ── */
         @media (max-width: 900px) {
-          .sol-two-col  { grid-template-columns: 1fr !important; }
-          .sol-panel    { grid-template-columns: 1fr !important; }
-          .sol-img-side { border-radius: 0 0 20px 20px !important; min-height: 240px !important; }
-          .sol-panel    { min-height: unset !important; }
+          .sol-two-col { grid-template-columns: 1fr !important; }
+          .sol-panel   {
+            grid-template-columns: 1fr !important;
+            height: auto !important;
+          }
+          .sol-img-side {
+            border-radius: 0 0 20px 20px !important;
+            height: auto !important;
+            aspect-ratio: 16 / 9;
+            min-height: unset !important;
+          }
+          .sol-img-side img {
+            position: absolute !important;
+            inset: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            object-position: center top !important;
+          }
         }
         @media (max-width: 580px) {
           .sol-text-side { padding: 28px 22px !important; }
+          .sol-img-side  { aspect-ratio: 4 / 3; }
         }
       `}</style>
 
@@ -442,25 +463,17 @@ export default function Solutions() {
               }}
             >
               {/* Shimmer skeleton while image loads */}
-              {!imgLoaded && (
-                <div style={{
-                  position: 'absolute',
-                  inset: 0,
-                  background: 'linear-gradient(90deg,#F5ECE4 25%,#FFF1E6 50%,#F5ECE4 75%)',
-                  backgroundSize: '200% 100%',
-                  animation: 'solSpin 1.4s linear infinite',
-                  // override spin for shimmer
-                }} />
-              )}
-              {!imgLoaded && (
-                <div style={{
-                  position: 'absolute',
-                  inset: 0,
-                  background: 'linear-gradient(100deg,#F5ECE4 0%,#FDDCC4 30%,#F5ECE4 60%)',
-                  backgroundSize: '200% 100%',
-                  animation: 'shimmerSol 1.4s ease-in-out infinite',
-                }} />
-              )}
+              <div style={{
+                position: 'absolute',
+                inset: 0,
+                background: 'linear-gradient(105deg, #F5ECE4 0%, #FDDCC4 35%, #FFF1E6 50%, #FDDCC4 65%, #F5ECE4 100%)',
+                backgroundSize: '300% 100%',
+                animation: imgLoaded ? 'none' : 'shimmerSol 1.6s ease-in-out infinite',
+                opacity: imgLoaded ? 0 : 1,
+                transition: 'opacity .5s ease',
+                zIndex: 1,
+                pointerEvents: 'none',
+              }} />
 
               <img
                 key={`img-${active}`}
@@ -471,10 +484,12 @@ export default function Solutions() {
                   width: '100%',
                   height: '100%',
                   objectFit: 'cover',
-                  objectPosition: 'center',
+                  objectPosition: 'center top',
                   display: 'block',
-                  animation: imgLoaded ? 'solFadeImg .5s ease both' : 'none',
+                  animation: imgLoaded ? 'solFadeImg .65s cubic-bezier(.22,.68,0,1) both' : 'none',
                   opacity: imgLoaded ? 1 : 0,
+                  position: 'relative',
+                  zIndex: 2,
                 }}
               />
 
@@ -510,13 +525,7 @@ export default function Solutions() {
           </div>
         </div>
 
-        {/* shimmer keyframe */}
-        <style>{`
-          @keyframes shimmerSol {
-            0%   { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
-          }
-        `}</style>
+
       </div>
     </section>
   )

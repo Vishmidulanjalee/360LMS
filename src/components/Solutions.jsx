@@ -164,6 +164,71 @@ export default function Solutions() {
         .sol-tab-btn:hover .sol-tab-label  { color: #C2410C !important; }
         .sol-tab-btn:hover .sol-tab-icon   { color: #C2410C !important; }
 
+        /* ── Image container animations ── */
+        @keyframes solCurtain {
+          from { clip-path: inset(0 0 0 100%); }
+          to   { clip-path: inset(0 0 0 0); }
+        }
+        @keyframes solCurtainBar {
+          0%   { transform: translateX(0);    opacity: 1; }
+          85%  { opacity: 1; }
+          100% { transform: translateX(-100%); opacity: 0; }
+        }
+        @keyframes solKenBurns {
+          0%   { transform: scale(1)    translate(0, 0); }
+          100% { transform: scale(1.12) translate(-2%, -1.5%); }
+        }
+        @keyframes solShineSweep {
+          0%, 70% { left: -60%; }
+          100%    { left: 130%; }
+        }
+        @keyframes solBadgeFloat {
+          0%, 100% { transform: translateY(0); }
+          50%      { transform: translateY(-5px); }
+        }
+        @keyframes solProgress {
+          from { transform: scaleX(0); }
+          to   { transform: scaleX(1); }
+        }
+        .sol-img-side { isolation: isolate; }
+        .sol-img-wrap {
+          position: absolute; inset: 0; z-index: 2; overflow: hidden;
+          animation: solCurtain .8s cubic-bezier(.77,0,.18,1) both;
+        }
+        .sol-img-wrap img {
+          transition: filter .5s ease;
+        }
+        .sol-img-wrap.is-loaded img {
+          animation: solFadeImg .65s cubic-bezier(.22,.68,0,1) both,
+                     solKenBurns 14s ease-in-out .65s infinite alternate;
+        }
+        .sol-img-side:hover .sol-img-wrap img { filter: saturate(1.15) brightness(1.04); }
+        .sol-img-zoom { position:absolute; inset:0; transition: transform .8s cubic-bezier(.2,.7,.2,1); }
+        .sol-img-side:hover .sol-img-zoom { transform: scale(1.06); }
+        .sol-curtain-bar {
+          position: absolute; top: 0; bottom: 0; right: 0; width: 100%; z-index: 3; pointer-events: none;
+          background: linear-gradient(90deg, #F97316, #C2410C);
+          transform-origin: right;
+          animation: solCurtainBar .8s cubic-bezier(.77,0,.18,1) both;
+          clip-path: inset(0 0 0 calc(100% - 6px));
+        }
+        .sol-shine {
+          position: absolute; top: 0; left: -60%; width: 45%; height: 100%; z-index: 4; pointer-events: none;
+          background: linear-gradient(105deg, transparent, rgba(255,255,255,.35), transparent);
+          transform: skewX(-18deg);
+          animation: solShineSweep 5s ease-in-out 1s infinite;
+        }
+        .sol-badge-float { animation: solBadgeFloat 3.2s ease-in-out infinite; }
+        .sol-progress {
+          position: absolute; left: 0; right: 0; bottom: 0; height: 3px; z-index: 5;
+          background: linear-gradient(90deg, #F97316, #C2410C);
+          transform-origin: left;
+          animation: solProgress 1.1s cubic-bezier(.2,.7,.2,1) .2s both;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .sol-img-wrap, .sol-img-wrap.is-loaded img, .sol-shine, .sol-badge-float, .sol-curtain-bar, .sol-progress { animation: none !important; }
+        }
+
         /* ── Mobile responsive ── */
         @media (max-width: 900px) {
           .sol-two-col { grid-template-columns: 1fr !important; }
@@ -475,28 +540,33 @@ export default function Solutions() {
                 pointerEvents: 'none',
               }} />
 
-              <img
-                key={`img-${active}`}
-                src={item.img}
-                alt={item.title}
-                onLoad={() => setImgLoaded(true)}
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                  objectPosition: 'center top',
-                  display: 'block',
-                  animation: imgLoaded ? 'solFadeImg .65s cubic-bezier(.22,.68,0,1) both' : 'none',
-                  opacity: imgLoaded ? 1 : 0,
-                  position: 'relative',
-                  zIndex: 2,
-                }}
-              />
+              <div key={`wrap-${active}`} className={`sol-img-wrap ${imgLoaded ? 'is-loaded' : ''}`}>
+                <div className="sol-img-zoom">
+                  <img
+                    src={item.img}
+                    alt={item.title}
+                    onLoad={() => setImgLoaded(true)}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      objectPosition: 'center top',
+                      display: 'block',
+                      opacity: imgLoaded ? 1 : 0,
+                    }}
+                  />
+                </div>
+                <span className="sol-shine" aria-hidden="true" />
+              </div>
+
+              {/* Orange wipe edge that leads the curtain reveal */}
+              <span key={`bar-${active}`} className="sol-curtain-bar" aria-hidden="true" />
 
               {/* Gradient overlay */}
               <div style={{
                 position: 'absolute',
                 inset: 0,
+                zIndex: 3,
                 background: 'linear-gradient(180deg, rgba(249,115,22,.07) 0%, transparent 50%, rgba(28,20,16,.18) 100%)',
                 pointerEvents: 'none',
               }} />
@@ -506,21 +576,29 @@ export default function Solutions() {
                 position: 'absolute',
                 bottom: '16px',
                 left: '16px',
-                padding: '6px 14px',
-                borderRadius: '999px',
-                background: 'rgba(255,255,255,.88)',
-                backdropFilter: 'blur(8px)',
-                fontSize: '12px',
-                fontWeight: 700,
-                color: '#C2410C',
-                fontFamily: "'SF Pro Display','Satoshi',sans-serif",
-                border: '1px solid rgba(255,255,255,.9)',
-                boxShadow: '0 4px 12px rgba(60,30,10,.12)',
+                zIndex: 6,
                 animation: imgLoaded ? 'solSlideIn .4s .3s ease both' : 'none',
                 opacity: imgLoaded ? undefined : 0,
               }}>
-                {item.title}
+                <div className="sol-badge-float" style={{
+                  padding: '6px 14px',
+                  borderRadius: '999px',
+                  background: 'rgba(255,255,255,.88)',
+                  backdropFilter: 'blur(8px)',
+                  WebkitBackdropFilter: 'blur(8px)',
+                  fontSize: '12px',
+                  fontWeight: 700,
+                  color: '#C2410C',
+                  fontFamily: "'SF Pro Display','Satoshi',sans-serif",
+                  border: '1px solid rgba(255,255,255,.9)',
+                  boxShadow: '0 4px 12px rgba(60,30,10,.12)',
+                }}>
+                  {item.title}
+                </div>
               </div>
+
+              {/* Progress line along the bottom */}
+              <span key={`prog-${active}`} className="sol-progress" aria-hidden="true" />
             </div>
           </div>
         </div>

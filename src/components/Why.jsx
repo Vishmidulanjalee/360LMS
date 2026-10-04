@@ -89,7 +89,6 @@ export default function Why() {
 
       <div className="wrap relative">
         <div className={`sec-head transition-all duration-700 ease-out ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <span className="why-eyebrow">Why 360 LMS</span>
           <h2>Built for the way <span className="text-[#C2410C]">modern institutes work</span></h2>
         </div>
 

@@ -556,7 +556,6 @@ td.n{font-weight:700;color:var(--ink)}
 .why-orb{position:absolute;border-radius:50%;filter:blur(70px);pointer-events:none;opacity:.55;animation:orbDrift 12s ease-in-out infinite alternate}
 .why-orb-a{width:380px;height:380px;background:radial-gradient(circle,rgba(249,115,22,.28),transparent 70%);top:-80px;left:-100px}
 .why-orb-b{width:440px;height:440px;background:radial-gradient(circle,rgba(194,65,12,.18),transparent 70%);bottom:-120px;right:-120px;animation-duration:16s;animation-direction:alternate-reverse}
-.why-eyebrow{display:inline-block;margin-bottom:14px;padding:6px 14px;border-radius:999px;background:var(--orange-soft);color:var(--orange-strong);font-size:12.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
 .why-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;perspective:1200px}
 .why-card{--rx:0deg;--ry:0deg;position:relative;display:flex;flex-direction:column;border-radius:24px;background:#fff;border:1px solid var(--line);box-shadow:0 14px 34px rgba(60,30,10,.06);overflow:hidden;
   opacity:0;filter:blur(8px);transform:translateY(40px) scale(.96);

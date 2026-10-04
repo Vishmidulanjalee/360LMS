@@ -31,7 +31,7 @@ const DashboardMockup = memo(function DashboardMockup({ dashRef, dashVisible }) 
   return (
     <div
       ref={dashRef}
-      className="mt-20 w-full max-w-4xl relative"
+      className="mt-14 sm:mt-20 w-full max-w-4xl relative"
       style={{
         opacity: dashVisible ? 1 : 0,
         transform: 'none',
@@ -50,13 +50,13 @@ const DashboardMockup = memo(function DashboardMockup({ dashRef, dashVisible }) 
         style={{ background: '#fff', border: '1.5px solid rgba(239,226,214,0.9)', boxShadow: '0 48px 100px rgba(60,30,10,.17), 0 8px 24px rgba(60,30,10,.06)' }}
       >
         {/* Title bar */}
-        <div className="flex items-center justify-between px-5 h-11 bg-[#FFFCFA] border-b border-[#F5ECE4]">
+        <div className="flex items-center justify-between px-3 sm:px-5 h-11 bg-[#FFFCFA] border-b border-[#F5ECE4]">
           <div className="flex gap-1.5">
             <div className="w-3 h-3 rounded-full bg-[#F5C9B8]" />
             <div className="w-3 h-3 rounded-full bg-[#F6DDB0]" />
             <div className="w-3 h-3 rounded-full bg-[#C9E6CF]" />
           </div>
-          <div className="flex-1 max-w-60 mx-auto h-6 rounded-md bg-[#FBF3EC] flex items-center px-3 gap-2 text-[11px] text-[#6B5A4E]">
+          <div className="hidden sm:flex flex-1 max-w-60 mx-auto h-6 rounded-md bg-[#FBF3EC] items-center px-3 gap-2 text-[11px] text-[#6B5A4E]">
             <span className="text-[#A8978A]">🔍</span> Search students, classes…
           </div>
           <div className="flex items-center gap-3">
@@ -71,7 +71,7 @@ const DashboardMockup = memo(function DashboardMockup({ dashRef, dashVisible }) 
         {/* Body */}
         <div className="flex">
           {/* Sidebar */}
-          <div className="w-14 border-r border-[#F5ECE4] flex flex-col items-center gap-3.5 pt-4 pb-4 bg-[#FFFCFA] shrink-0">
+          <div className="hidden sm:flex w-14 border-r border-[#F5ECE4] flex-col items-center gap-3.5 pt-4 pb-4 bg-[#FFFCFA] shrink-0">
             {[
               { ic: '⊞', active: true },
               { ic: '👤' },
@@ -91,14 +91,14 @@ const DashboardMockup = memo(function DashboardMockup({ dashRef, dashVisible }) 
           </div>
 
           {/* Main */}
-          <div className="flex-1 min-w-0 p-4 flex flex-col gap-3">
+          <div className="flex-1 min-w-0 p-3 sm:p-4 flex flex-col gap-3">
             <div className="flex justify-between items-baseline">
               <strong className="font-['SF_Pro_Display','Satoshi',sans-serif] text-[14px]">Institute Overview</strong>
               <span className="text-[10px] text-[#6B5A4E]">This term</span>
             </div>
 
             {/* KPIs */}
-            <div className="grid grid-cols-4 gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
               {[
                 { lbl: 'Total Students', val: '1,248', sub: '+64 this month', subC: 'text-green-600' },
                 { lbl: 'Active Courses',  val: '36',    sub: '8 online',       subC: 'text-[#C2410C]' },
@@ -118,7 +118,7 @@ const DashboardMockup = memo(function DashboardMockup({ dashRef, dashVisible }) 
             </div>
 
             {/* Row 2 */}
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               <div className="p-3 border border-[#F5ECE4] rounded-[10px]">
                 <div className="flex justify-between text-[10.5px] font-bold mb-2">
                   <span>Attendance</span><span className="text-green-600">94%</span>
@@ -150,7 +150,7 @@ const DashboardMockup = memo(function DashboardMockup({ dashRef, dashVisible }) 
             </div>
 
             {/* Row 3 */}
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
               <div className="p-2.5 border border-[#F5ECE4] rounded-[10px]">
                 <div className="text-[10px] font-bold mb-1.5">Upcoming Classes</div>
                 {[['4:00','A/L Physics','Hall 02'],['5:30','O/L Maths','Online'],['7:00','English Lit.','Hall 05']].map(([t,n,loc])=>(
@@ -170,7 +170,7 @@ const DashboardMockup = memo(function DashboardMockup({ dashRef, dashVisible }) 
                   </div>
                 ))}
               </div>
-              <div className="p-2.5 border border-[#F5ECE4] rounded-[10px]">
+              <div className="hidden sm:block p-2.5 border border-[#F5ECE4] rounded-[10px]">
                 <div className="text-[10px] font-bold mb-1.5">Notifications</div>
                 {[
                   {dot:'bg-[#F97316]',txt:'SMS sent to 312 parents'},
@@ -268,7 +268,7 @@ export default function Hero() {
       </div>
 
       {/* ── Main content ── */}
-      <div className="relative z-10 max-w-5xl mx-auto px-6 pt-[130px] pb-16 flex flex-col items-center text-center flex-1">
+      <div className="relative z-10 max-w-5xl mx-auto w-full px-5 sm:px-6 pt-[110px] sm:pt-[130px] pb-16 flex flex-col items-center text-center flex-1">
 
         {/* ── Top Badge ── */}
         <div className={`
@@ -280,10 +280,11 @@ export default function Hero() {
         `}>
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200%] aspect-square bg-[conic-gradient(from_0deg,transparent_0%,transparent_35%,#F97316_50%,#EA580C_55%,transparent_65%,transparent_100%)] animate-[spin_2.5s_linear_infinite] opacity-80"></div>
           <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#F97316]/50 to-[#EA580C]/50 blur-sm opacity-30 group-hover:opacity-60 transition-opacity duration-500"></div>
-          <div className="relative inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-white/95 backdrop-blur-xl border border-[#FDBA74]/30 overflow-hidden w-full">
+          <div className="relative inline-flex items-center justify-center gap-2.5 px-4 sm:px-5 py-2 rounded-full bg-white/95 backdrop-blur-xl border border-[#FDBA74]/30 overflow-hidden w-full">
             <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/80 to-transparent group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
-            <span className="relative font-['SF_Pro_Display','Satoshi',sans-serif] text-[13px] sm:text-[13.5px] font-extrabold tracking-[0.04em] bg-[linear-gradient(110deg,#7C2D12,30%,#EA580C,50%,#C2410C,70%,#7C2D12)] bg-[length:250%_auto] animate-[shimmerText_4s_linear_infinite] bg-clip-text text-transparent">
-              The No. 01 Learning Management Platform in Sri Lanka
+            <span className="relative font-['SF_Pro_Display','Satoshi',sans-serif] text-[12px] sm:text-[13.5px] font-extrabold tracking-[0.03em] sm:tracking-[0.04em] whitespace-nowrap bg-[linear-gradient(110deg,#7C2D12,30%,#EA580C,50%,#C2410C,70%,#7C2D12)] bg-[length:250%_auto] animate-[shimmerText_4s_linear_infinite] bg-clip-text text-transparent">
+              <span className="sm:hidden">No. 01 LMS Platform in Sri Lanka</span>
+              <span className="hidden sm:inline">The No. 01 Learning Management Platform in Sri Lanka</span>
             </span>
           </div>
         </div>
@@ -292,7 +293,7 @@ export default function Hero() {
         <h1 className={`
           relative w-full max-w-4xl mx-auto
           font-['SF_Pro_Display','Satoshi',sans-serif] font-bold leading-[1.06] tracking-[-0.035em] select-none
-          text-[clamp(24px,7.2vw,80px)]
+          text-[clamp(30px,9vw,80px)]
           transition-opacity duration-700 ease-out delay-100
           ${visible ? 'opacity-100' : 'opacity-0'}
         `}>
@@ -335,7 +336,7 @@ export default function Hero() {
 
         {/* Lead */}
         <p className={`
-          mt-8 text-[18px] leading-[1.72] text-[#57483F] font-medium max-w-2xl
+          mt-6 sm:mt-8 text-[16px] sm:text-[18px] leading-[1.65] sm:leading-[1.72] text-[#57483F] font-medium max-w-2xl
           transition-all duration-700 ease-out delay-300
           ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}
         `}>
@@ -344,7 +345,7 @@ export default function Hero() {
         </p>
 
         <p className={`
-          mt-3 text-[15px] leading-[1.75] text-[#7A6055] max-w-xl
+          mt-3 text-[14px] sm:text-[15px] leading-[1.75] text-[#7A6055] max-w-xl
           transition-all duration-700 ease-out delay-380
           ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}
         `}>
@@ -353,13 +354,13 @@ export default function Hero() {
 
         {/* CTAs */}
         <div className={`
-          mt-10 flex flex-wrap justify-center gap-4
+          mt-8 sm:mt-10 flex flex-col sm:flex-row w-full sm:w-auto justify-center gap-3 sm:gap-4
           transition-all duration-700 ease-out delay-460
           ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}
         `}>
           <a
             href="#cta"
-            className="inline-flex items-center gap-2.5 px-9 py-4 rounded-2xl font-bold text-[16px] text-white transition-all duration-200 hover:-translate-y-1 active:translate-y-0"
+            className="inline-flex items-center justify-center gap-2.5 px-9 py-4 rounded-2xl font-bold text-[16px] text-white transition-all duration-200 hover:-translate-y-1 active:translate-y-0"
             style={{ background: 'linear-gradient(135deg, #C2410C, #9A3412)', boxShadow: '0 14px 32px rgba(194,65,12,.42), 0 4px 8px rgba(194,65,12,.2)' }}
           >
             Get Started Free
@@ -367,8 +368,8 @@ export default function Hero() {
           </a>
           <a
             href="#platform"
-            className="inline-flex items-center gap-2 px-9 py-4 rounded-2xl font-semibold text-[16px] transition-all duration-200 hover:-translate-y-0.5"
-            style={{ background: 'rgba(255,255,255,0.78)', backdropFilter: 'blur(12px)', border: '1.5px solid rgba(249,115,22,0.25)', color: '#3D1A08', boxShadow: '0 4px 14px rgba(194,65,12,0.08)' }}
+            className="inline-flex items-center justify-center gap-2 px-9 py-4 rounded-2xl font-semibold text-[16px] transition-all duration-200 hover:-translate-y-0.5"
+            style={{ background: 'rgba(255,255,255,0.78)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', border: '1.5px solid rgba(249,115,22,0.25)', color: '#3D1A08', boxShadow: '0 4px 14px rgba(194,65,12,0.08)' }}
           >
             Explore Platform
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 18l6-6-6-6"/></svg>
@@ -377,8 +378,8 @@ export default function Hero() {
 
         {/* Stats strip */}
         <div
-          className={`mt-10 inline-flex items-center rounded-2xl overflow-hidden transition-all duration-700 ease-out delay-560 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
-          style={{ background: 'rgba(255,255,255,0.72)', backdropFilter: 'blur(16px)', border: '1.5px solid rgba(249,115,22,0.18)', boxShadow: '0 8px 32px rgba(194,65,12,0.09), 0 2px 8px rgba(60,30,10,0.06)' }}
+          className={`mt-8 sm:mt-10 grid grid-cols-2 sm:inline-flex sm:items-center w-full sm:w-auto rounded-2xl overflow-hidden transition-all duration-700 ease-out delay-560 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+          style={{ background: 'rgba(255,255,255,0.72)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)', border: '1.5px solid rgba(249,115,22,0.18)', boxShadow: '0 8px 32px rgba(194,65,12,0.09), 0 2px 8px rgba(60,30,10,0.06)' }}
         >
           {[
             { val: '1,200+', lbl: 'Students' },
@@ -386,14 +387,19 @@ export default function Hero() {
             { val: '36+',    lbl: 'Institutes' },
             { val: '4.9★',   lbl: 'Rating' },
           ].map((s, i, arr) => (
-            <span key={s.lbl} className="flex items-center">
-              <span className="flex flex-col items-center px-7 py-3.5">
-                <strong className="font-['SF_Pro_Display','Satoshi',sans-serif] text-[21px] font-extrabold text-[#C2410C] leading-tight">
+            <span
+              key={s.lbl}
+              className={`flex items-center justify-center sm:justify-start
+                ${i % 2 === 0 ? 'border-r border-[#F97316]/15 sm:border-r-0' : ''}
+                ${i < 2 ? 'border-b border-[#F97316]/15 sm:border-b-0' : ''}`}
+            >
+              <span className="flex flex-col items-center px-4 sm:px-7 py-3.5">
+                <strong className="font-['SF_Pro_Display','Satoshi',sans-serif] text-[20px] sm:text-[21px] font-extrabold text-[#C2410C] leading-tight">
                   {s.val}
                 </strong>
                 <span className="text-[11px] font-semibold text-[#7A6055] mt-0.5">{s.lbl}</span>
               </span>
-              {i < arr.length - 1 && <span className="w-px h-10" style={{ background: 'rgba(249,115,22,0.2)' }} />}
+              {i < arr.length - 1 && <span className="hidden sm:block w-px h-10" style={{ background: 'rgba(249,115,22,0.2)' }} />}
             </span>
           ))}
         </div>

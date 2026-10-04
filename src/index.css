@@ -41,6 +41,70 @@
   70%       { transform: translateY(-2px) scale(1.02); }
 }
 
+/* ══════════ Hero animated background ══════════ */
+.hero-bg{position:absolute;inset:0;overflow:hidden;pointer-events:none;--mx:50%;--my:30%;--spot:0}
+.hero-aurora{position:absolute;inset:-10%;filter:blur(70px) saturate(120%);opacity:.9}
+.hb{position:absolute;display:block;will-change:transform,border-radius}
+.hb-1{width:46vw;height:46vw;max-width:720px;max-height:720px;top:-12%;right:-8%;
+  background:radial-gradient(circle at 30% 30%,rgba(249,115,22,.55),rgba(251,146,60,.25) 55%,transparent 72%);
+  animation:hbMorph 18s ease-in-out infinite, hbMoveA 22s ease-in-out infinite alternate}
+.hb-2{width:38vw;height:38vw;max-width:600px;max-height:600px;bottom:-6%;left:-10%;
+  background:radial-gradient(circle at 60% 40%,rgba(253,186,116,.6),rgba(254,215,170,.25) 55%,transparent 72%);
+  animation:hbMorph 22s ease-in-out infinite reverse, hbMoveB 26s ease-in-out infinite alternate}
+.hb-3{width:30vw;height:30vw;max-width:480px;max-height:480px;top:22%;left:28%;
+  background:radial-gradient(circle,rgba(234,88,12,.28),rgba(249,115,22,.08) 60%,transparent 75%);
+  animation:hbMorph 16s ease-in-out infinite, hbMoveC 20s ease-in-out infinite alternate}
+.hb-4{width:26vw;height:26vw;max-width:420px;max-height:420px;top:4%;left:6%;
+  background:radial-gradient(circle,rgba(252,211,77,.35),rgba(251,191,36,.1) 60%,transparent 75%);
+  animation:hbMorph 20s ease-in-out infinite reverse, hbMoveD 24s ease-in-out infinite alternate}
+@keyframes hbMorph{
+  0%,100%{border-radius:42% 58% 63% 37% / 41% 44% 56% 59%}
+  33%{border-radius:63% 37% 46% 54% / 55% 62% 38% 45%}
+  66%{border-radius:38% 62% 35% 65% / 62% 38% 62% 38%}
+}
+@keyframes hbMoveA{0%{transform:translate(0,0) rotate(0)}100%{transform:translate(-12vw,10vh) rotate(60deg)}}
+@keyframes hbMoveB{0%{transform:translate(0,0) rotate(0)}100%{transform:translate(14vw,-12vh) rotate(-50deg)}}
+@keyframes hbMoveC{0%{transform:translate(0,0) scale(1)}100%{transform:translate(10vw,8vh) scale(1.25)}}
+@keyframes hbMoveD{0%{transform:translate(0,0) scale(1)}100%{transform:translate(8vw,14vh) scale(.85)}}
+
+.hero-rays{position:absolute;left:50%;top:-60%;width:180vmax;height:180vmax;transform:translateX(-50%);opacity:.35;
+  background:repeating-conic-gradient(from 0deg at 50% 50%,rgba(255,255,255,0) 0deg,rgba(255,255,255,.55) 4deg,rgba(255,255,255,0) 9deg,rgba(255,255,255,0) 24deg);
+  -webkit-mask-image:radial-gradient(circle at 50% 50%,#000 0%,transparent 45%);mask-image:radial-gradient(circle at 50% 50%,#000 0%,transparent 45%);
+  animation:heroRays 80s linear infinite;mix-blend-mode:soft-light}
+@keyframes heroRays{to{transform:translateX(-50%) rotate(360deg)}}
+
+.hero-grid{position:absolute;inset:-40px;
+  background-image:linear-gradient(rgba(194,65,12,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(194,65,12,.06) 1px,transparent 1px);
+  background-size:44px 44px;
+  -webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 35%,#000 20%,transparent 75%);mask-image:radial-gradient(ellipse 70% 60% at 50% 35%,#000 20%,transparent 75%);
+  animation:heroGridPan 30s linear infinite}
+@keyframes heroGridPan{to{transform:translate(44px,44px)}}
+
+.hero-spot{position:absolute;inset:0;opacity:var(--spot);transition:opacity .6s ease;
+  background:radial-gradient(520px circle at var(--mx) var(--my),rgba(249,115,22,.14),rgba(253,186,116,.06) 40%,transparent 70%)}
+
+.hero-particles{position:absolute;inset:0}
+.hero-particles span{position:absolute;bottom:-20px;border-radius:50%;
+  background:radial-gradient(circle,#FDBA74 0%,rgba(249,115,22,.6) 50%,transparent 75%);
+  box-shadow:0 0 10px rgba(249,115,22,.45);opacity:0;
+  animation-name:heroParticle;animation-timing-function:linear;animation-iteration-count:infinite}
+@keyframes heroParticle{
+  0%{transform:translate(0,0) scale(.6);opacity:0}
+  10%{opacity:.8}
+  50%{transform:translate(var(--drift),-55vh) scale(1)}
+  90%{opacity:.6}
+  100%{transform:translate(calc(var(--drift) * -.5),-110vh) scale(.7);opacity:0}
+}
+@media (max-width:640px){
+  .hero-aurora{filter:blur(50px)}
+  .hb-1{width:90vw;height:90vw}.hb-2{width:80vw;height:80vw}.hb-3{width:60vw;height:60vw}.hb-4{width:55vw;height:55vw}
+  .hero-particles span:nth-child(n+11){display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .hb,.hero-rays,.hero-grid,.hero-particles span{animation:none!important}
+  .hero-particles{display:none}
+}
+
 /* Carousel: reverse direction */
 @keyframes marqueeRev {
   from { transform: translateX(-50%); }

@@ -192,6 +192,88 @@ const DashboardMockup = memo(function DashboardMockup({ dashRef, dashVisible }) 
 })
 
 /* ─────────────────────────────────────────────────────────
+   HeroBackground — animated aurora + grid + particles.
+   memo'd so headline state changes never re-render it.
+───────────────────────────────────────────────────────── */
+const PARTICLES = Array.from({ length: 18 }, (_, i) => ({
+  left: `${(i * 53) % 100}%`,
+  size: 3 + ((i * 7) % 5),
+  dur: 14 + ((i * 5) % 12),
+  delay: -((i * 3.7) % 20),
+  drift: ((i % 2 ? 1 : -1) * (20 + (i * 11) % 40)),
+}))
+
+const HeroBackground = memo(function HeroBackground() {
+  const rootRef = useRef(null)
+
+  /* cursor-follow spotlight (rAF throttled, no React state) */
+  useEffect(() => {
+    const root = rootRef.current
+    const section = root?.parentElement
+    if (!root || !section || window.matchMedia('(hover: none)').matches) return
+    let raf = 0
+    const onMove = (e) => {
+      cancelAnimationFrame(raf)
+      raf = requestAnimationFrame(() => {
+        const r = section.getBoundingClientRect()
+        root.style.setProperty('--mx', `${e.clientX - r.left}px`)
+        root.style.setProperty('--my', `${e.clientY - r.top}px`)
+        root.style.setProperty('--spot', '1')
+      })
+    }
+    const onLeave = () => root.style.setProperty('--spot', '0')
+    section.addEventListener('mousemove', onMove)
+    section.addEventListener('mouseleave', onLeave)
+    return () => {
+      cancelAnimationFrame(raf)
+      section.removeEventListener('mousemove', onMove)
+      section.removeEventListener('mouseleave', onLeave)
+    }
+  }, [])
+
+  return (
+    <div ref={rootRef} className="hero-bg" aria-hidden="true">
+      {/* Aurora blobs */}
+      <div className="hero-aurora">
+        <span className="hb hb-1" />
+        <span className="hb hb-2" />
+        <span className="hb hb-3" />
+        <span className="hb hb-4" />
+      </div>
+
+      {/* Slow rotating light rays */}
+      <div className="hero-rays" />
+
+      {/* Panning grid with radial mask */}
+      <div className="hero-grid" />
+
+      {/* Cursor spotlight */}
+      <div className="hero-spot" />
+
+      {/* Floating particles */}
+      <div className="hero-particles">
+        {PARTICLES.map((p, i) => (
+          <span
+            key={i}
+            style={{
+              left: p.left,
+              width: p.size,
+              height: p.size,
+              animationDuration: `${p.dur}s`,
+              animationDelay: `${p.delay}s`,
+              '--drift': `${p.drift}px`,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Bottom fade */}
+      <div className="absolute bottom-0 left-0 right-0 h-40" style={{ background: 'linear-gradient(to bottom, transparent, rgba(255,249,244,0.85))' }} />
+    </div>
+  )
+})
+
+/* ─────────────────────────────────────────────────────────
    Main Hero component
 ───────────────────────────────────────────────────────── */
 export default function Hero() {
@@ -244,28 +326,8 @@ export default function Hero() {
       }}
     >
 
-      {/* ── Ambient orbs ── */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-        <div
-          className="absolute -top-40 -right-40 w-[700px] h-[700px] rounded-full"
-          style={{ background: 'radial-gradient(circle, rgba(249,115,22,0.22) 0%, rgba(251,146,60,0.08) 50%, transparent 75%)', animation: 'orbDrift 10s ease-in-out infinite alternate' }}
-        />
-        <div
-          className="absolute -bottom-24 -left-32 w-[500px] h-[500px] rounded-full"
-          style={{ background: 'radial-gradient(circle, rgba(253,186,116,0.25) 0%, rgba(249,115,22,0.06) 55%, transparent 75%)', animation: 'orbDrift 14s ease-in-out infinite alternate-reverse' }}
-        />
-        <div
-          className="absolute top-1/4 left-1/3 w-[400px] h-[400px] rounded-full"
-          style={{ background: 'radial-gradient(circle, rgba(249,115,22,0.07) 0%, transparent 70%)', animation: 'orbDrift 18s ease-in-out infinite alternate' }}
-        />
-        {/* Subtle grid */}
-        <div
-          className="absolute inset-0"
-          style={{ backgroundImage: 'linear-gradient(rgba(194,65,12,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(194,65,12,0.025) 1px, transparent 1px)', backgroundSize: '40px 40px' }}
-        />
-        {/* Bottom fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-32" style={{ background: 'linear-gradient(to bottom, transparent, rgba(255,249,244,0.6))' }} />
-      </div>
+      {/* ── Animated background ── */}
+      <HeroBackground />
 
       {/* ── Main content ── */}
       <div className="relative z-10 max-w-5xl mx-auto w-full px-5 sm:px-6 pt-[110px] sm:pt-[130px] pb-16 flex flex-col items-center text-center flex-1">
@@ -319,14 +381,14 @@ export default function Hero() {
                     key={`suffix-${idx}`}
                     text={SUFFIXES[idx]}
                     delay={6 * 32}
-                    className="text-transparent bg-clip-text bg-[linear-gradient(110deg,#C2410C,45%,#F97316,60%,#C2410C)] bg-[length:200%_auto] animate-[shimmerText_3s_linear_infinite]"
+                    className="text-transparent bg-clip-text bg-[linear-gradient(110deg,#C2410C,45%,#F97316,60%,#C2410C)] bg-[length:200%_auto] animate-[shimmerText_3s_linear_infinite] pb-[0.15em] -mb-[0.15em]"
                   />
                 </span>
               </>
             ) : (
               <>
                 <span className="text-[#3D1A08] whitespace-nowrap">Manage</span>
-                <span className="whitespace-nowrap text-transparent bg-clip-text bg-[linear-gradient(110deg,#C2410C,45%,#F97316,60%,#C2410C)]">
+                <span className="whitespace-nowrap text-transparent bg-clip-text bg-[linear-gradient(110deg,#C2410C,45%,#F97316,60%,#C2410C)] pb-[0.15em] -mb-[0.15em]">
                   {SUFFIXES[idx]}
                 </span>
               </>

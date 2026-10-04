@@ -34,7 +34,7 @@ export default function Ecosystem() {
   const [sectionRef, inView] = useInView(0.15)
 
   return (
-    <section id="ecosystem" className="sec eco" ref={sectionRef}>
+    <section id="ecosystem" className={`sec eco ${inView ? 'eco-in' : ''}`} ref={sectionRef}>
       <div className="wrap">
 
         {/* Header */}
@@ -50,6 +50,9 @@ export default function Ecosystem() {
             ${inView ? 'opacity-100 scale-100' : 'opacity-0 scale-[0.94]'}`}
           aria-label="360 LMS ecosystem overview"
         >
+          {[8, 22, 36, 52, 66, 80, 92].map((x, i) => (
+            <i className="eco-spark" key={x} style={{ left: `${x}%`, animationDelay: `${i * 0.9}s`, animationDuration: `${6 + (i % 3) * 2}s` }} />
+          ))}
           <div className="orbit-ring ring-one" />
           <div className="orbit-ring ring-two" />
           <div className="orbit-ring ring-three" />
@@ -85,8 +88,8 @@ export default function Ecosystem() {
         <div className={`flow transition-all duration-700 ease-out delay-900
           ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
           {flow.flatMap((item, i) => {
-            const parts = [<span key={item}>{item}</span>]
-            if (i < flow.length - 1) parts.push(<em key={`${item}-arrow`}>→</em>)
+            const parts = [<span key={item} style={{ '--i': i * 2 }}>{item}</span>]
+            if (i < flow.length - 1) parts.push(<em key={`${item}-arrow`} style={{ '--i': i * 2 + 1 }}>→</em>)
             return parts
           })}
         </div>

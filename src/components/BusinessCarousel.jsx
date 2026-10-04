@@ -115,7 +115,7 @@ export default function BusinessCarousel() {
       `}>
 
 
-        <h2 className="font-['Satoshi',sans-serif] font-bold text-[clamp(26px,3vw,42px)] leading-[1.14] tracking-[-0.03em] text-[#1C1410]">
+        <h2 className="font-['SF_Pro_Display','Satoshi',sans-serif] font-bold text-[clamp(26px,3vw,42px)] leading-[1.14] tracking-[-0.03em] text-[#1C1410]">
           Powering institutes that{' '}
           <span className="relative z-10 text-[#C2410C]">love to grow</span>
         </h2>
@@ -145,7 +145,7 @@ export default function BusinessCarousel() {
               "
               style={{ transitionDelay: `${i * 60}ms` }}
             >
-              <strong className="font-['Satoshi',sans-serif] text-[28px] font-extrabold text-[#C2410C] leading-none">
+              <strong className="font-['SF_Pro_Display','Satoshi',sans-serif] text-[28px] font-extrabold text-[#C2410C] leading-none">
                 {s.value}
               </strong>
               <span className="text-[11.5px] font-semibold text-[#6B5A4E] text-center mt-1">{s.label}</span>

@@ -166,7 +166,7 @@ export default function Testimonials() {
       >
 
 
-        <h2 className="font-['Satoshi',sans-serif] font-bold text-[clamp(28px,3.5vw,46px)] leading-[1.12] tracking-[-0.03em] text-[#1C1410]">
+        <h2 className="font-['SF_Pro_Display','Satoshi',sans-serif] font-bold text-[clamp(28px,3.5vw,46px)] leading-[1.12] tracking-[-0.03em] text-[#1C1410]">
           Trusted by institutes{' '}
           <span className="text-[#C2410C]">across Sri Lanka</span>
         </h2>
@@ -200,7 +200,7 @@ export default function Testimonials() {
               </svg>
             ))}
           </div>
-          <span className="font-['Satoshi',sans-serif] font-extrabold text-[20px] text-[#C2410C] tracking-tight">4.9</span>
+          <span className="font-['SF_Pro_Display','Satoshi',sans-serif] font-extrabold text-[20px] text-[#C2410C] tracking-tight">4.9</span>
           <div className="flex flex-col items-start leading-tight">
             <span className="text-[12px] font-bold text-[#1C1410]">Average rating</span>
             <span className="text-[11.5px] text-[#6B5A4E] font-medium">36+ institutions</span>
@@ -228,7 +228,7 @@ export default function Testimonials() {
         />
 
         {/* Row 1 */}
-        <div className="overflow-hidden mb-4">
+        <div className="overflow-hidden">
           <div
             className="flex gap-4 w-max py-2"
             style={{
@@ -240,18 +240,6 @@ export default function Testimonials() {
           </div>
         </div>
 
-        {/* Row 2 — reverse */}
-        <div className="overflow-hidden">
-          <div
-            className="flex gap-4 w-max py-2"
-            style={{
-              animation: 'marqueeRev 50s linear infinite',
-              animationPlayState: paused ? 'paused' : 'running',
-            }}
-          >
-            {[...doubled].reverse().map((t, i) => <TestimonialCard key={i} t={t} />)}
-          </div>
-        </div>
       </div>
     </section>
   )

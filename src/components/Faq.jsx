@@ -69,7 +69,7 @@ function FaqItem({ q, a, idx, inView }) {
         className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left group"
         aria-expanded={open}
       >
-        <span className={`font-['Satoshi',sans-serif] font-semibold text-[15.5px] leading-snug text-[#1C1410] group-hover:text-[#C2410C] transition-colors duration-200 ${open ? 'text-[#C2410C]' : ''}`}>
+        <span className={`font-['SF_Pro_Display','Satoshi',sans-serif] font-semibold text-[15.5px] leading-snug text-[#1C1410] group-hover:text-[#C2410C] transition-colors duration-200 ${open ? 'text-[#C2410C]' : ''}`}>
           {q}
         </span>
         {/* Plus / Minus icon */}
@@ -126,7 +126,7 @@ export default function Faq() {
           className={`text-center mb-12 transition-all duration-700 ease-out ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
         >
 
-          <h2 className="font-['Satoshi',sans-serif] font-bold text-[clamp(28px,3.5vw,46px)] leading-[1.12] tracking-[-0.03em] text-[#1C1410]">
+          <h2 className="font-['SF_Pro_Display','Satoshi',sans-serif] font-bold text-[clamp(28px,3.5vw,46px)] leading-[1.12] tracking-[-0.03em] text-[#1C1410]">
             Frequently Asked{' '}
             <span className="text-[#C2410C]">Questions</span>
           </h2><br></br>

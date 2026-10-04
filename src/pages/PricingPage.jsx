@@ -268,7 +268,7 @@ function PricingFaqItem({ q, a }) {
         className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left"
         aria-expanded={open}
       >
-        <span className={`font-['Satoshi',sans-serif] font-semibold text-[15px] text-[#1C1410] ${open ? 'text-[#C2410C]' : ''}`}>{q}</span>
+        <span className={`font-['SF_Pro_Display','Satoshi',sans-serif] font-semibold text-[15px] text-[#1C1410] ${open ? 'text-[#C2410C]' : ''}`}>{q}</span>
         <span className={`shrink-0 w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-300 ${open ? 'bg-[#C2410C] text-white rotate-45' : 'bg-[#FFF1E6] text-[#C2410C]'}`}>
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>
         </span>
@@ -340,6 +340,60 @@ function CheckIcon({ ok, isStandard = false, isPro = false }) {
   )
 }
 
+/* ─── ModernCheckIcon — dark-theme variant for the glassmorphism table ─── */
+function ModernCheckIcon({ ok, theme = 'neutral' }) {
+  const colors = {
+    orange: { check: '#F97316', bg: 'rgba(249,115,22,0.15)', border: 'rgba(249,115,22,0.3)', cross: 'rgba(255,255,255,0.15)', crossStroke: 'rgba(255,255,255,0.2)', text: '#F97316', textBg: 'rgba(249,115,22,0.12)', textBorder: 'rgba(249,115,22,0.25)', included: '#F97316', includedBg: 'rgba(249,115,22,0.12)', includedBorder: 'rgba(249,115,22,0.25)' },
+    gold:   { check: '#FDBA74', bg: 'rgba(253,186,116,0.12)', border: 'rgba(253,186,116,0.25)', cross: 'rgba(255,255,255,0.1)', crossStroke: 'rgba(255,255,255,0.15)', text: '#FDBA74', textBg: 'rgba(253,186,116,0.1)', textBorder: 'rgba(253,186,116,0.2)', included: '#FDBA74', includedBg: 'rgba(253,186,116,0.1)', includedBorder: 'rgba(253,186,116,0.2)' },
+    neutral:{ check: 'rgba(255,255,255,0.7)', bg: 'rgba(255,255,255,0.08)', border: 'rgba(255,255,255,0.15)', cross: 'rgba(255,255,255,0.06)', crossStroke: 'rgba(255,255,255,0.12)', text: 'rgba(255,255,255,0.65)', textBg: 'rgba(255,255,255,0.06)', textBorder: 'rgba(255,255,255,0.12)', included: 'rgba(255,255,255,0.7)', includedBg: 'rgba(255,255,255,0.06)', includedBorder: 'rgba(255,255,255,0.12)' },
+  }
+  const c = colors[theme]
+
+  if (ok === true)
+    return (
+      <div className="w-8 h-8 rounded-full flex items-center justify-center transition-transform duration-200 hover:scale-110"
+        style={{ background: c.bg, border: `1px solid ${c.border}` }}>
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8l3.5 3.5 6.5-7" stroke={c.check} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      </div>
+    )
+  if (ok === false)
+    return (
+      <div className="w-8 h-8 rounded-full flex items-center justify-center"
+        style={{ background: c.cross, border: `1px solid ${c.crossStroke}` }}>
+        <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
+          <path d="M2 2l8 8M10 2l-8 8" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5" strokeLinecap="round"/>
+        </svg>
+      </div>
+    )
+  /* string values */
+  const isAddon = typeof ok === 'string' && ok.startsWith('LKR')
+  const isIncluded = ok === 'Included'
+  if (isAddon)
+    return (
+      <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold whitespace-nowrap"
+        style={{ background: 'rgba(249,115,22,0.1)', border: '1px solid rgba(249,115,22,0.2)', color: '#FDBA74' }}>
+        <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        {ok}
+      </span>
+    )
+  if (isIncluded)
+    return (
+      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold whitespace-nowrap"
+        style={{ background: c.includedBg, border: `1px solid ${c.includedBorder}`, color: c.included }}>
+        <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        Included
+      </span>
+    )
+  return (
+    <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold whitespace-nowrap"
+      style={{ background: c.textBg, border: `1px solid ${c.textBorder}`, color: c.text }}>
+      {ok}
+    </span>
+  )
+}
+
 function PlanCard({ plan, delay = 0, inView }) {
   const [students, setStudents] = useState(0)
   const isLight = plan.id === 'starter'
@@ -390,7 +444,7 @@ function PlanCard({ plan, delay = 0, inView }) {
       <div className="p-7 flex flex-col flex-1">
         {/* Plan name */}
         <div className="mb-6">
-          <h3 className={`font-['Satoshi',sans-serif] font-bold text-[22px] ${isDark ? 'text-white' : 'text-[#1C1410]'}`}>
+          <h3 className={`font-['SF_Pro_Display','Satoshi',sans-serif] font-bold text-[22px] ${isDark ? 'text-white' : 'text-[#1C1410]'}`}>
             {plan.name}
           </h3>
           <p className={`text-[13px] mt-1 ${isDark ? 'text-white/70' : 'text-[#6B5A4E]'}`}>
@@ -404,7 +458,7 @@ function PlanCard({ plan, delay = 0, inView }) {
             Monthly Base Fee
           </div>
           <div className="flex items-end gap-1.5">
-            <span className={`font-['Satoshi',sans-serif] font-extrabold text-[38px] leading-none ${isDark ? 'text-white' : 'text-[#C2410C]'}`}>
+            <span className={`font-['SF_Pro_Display','Satoshi',sans-serif] font-extrabold text-[38px] leading-none ${isDark ? 'text-white' : 'text-[#C2410C]'}`}>
               LKR {plan.basePrice.toLocaleString()}
             </span>
           </div>
@@ -487,7 +541,7 @@ function PlanCard({ plan, delay = 0, inView }) {
           <div className={`mx-4 mb-4 rounded-xl px-4 py-3 flex justify-between items-center
             ${isDark ? 'bg-white/10' : 'bg-white border border-[#EFE2D6] shadow-sm'}`}>
             <span className={`text-[12px] font-semibold ${isDark ? 'text-white/60' : 'text-[#6B5A4E]'}`}>Total / Month</span>
-            <span className={`font-['Satoshi',sans-serif] text-[22px] font-extrabold tracking-tight ${isDark ? 'text-white' : 'text-[#C2410C]'}`}>
+            <span className={`font-['SF_Pro_Display','Satoshi',sans-serif] text-[22px] font-extrabold tracking-tight ${isDark ? 'text-white' : 'text-[#C2410C]'}`}>
               LKR {totalFee.toLocaleString()}
             </span>
           </div>
@@ -569,7 +623,7 @@ export default function PricingPage() {
 
 
 
-          <h1 className={`font-['Satoshi',sans-serif] font-bold text-[clamp(36px,5vw,64px)] leading-[1.08] tracking-[-0.035em] text-[#1C1410] transition-all duration-700 ease-out delay-100 ${heroIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
+          <h1 className={`font-['SF_Pro_Display','Satoshi',sans-serif] font-bold text-[clamp(36px,5vw,64px)] leading-[1.08] tracking-[-0.035em] text-[#1C1410] transition-all duration-700 ease-out delay-100 ${heroIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
             Simple, Honest{' '}
             <span className="relative inline-block text-transparent bg-clip-text bg-[linear-gradient(110deg,#C2410C,45%,#F97316,55%,#C2410C)] bg-[length:200%_auto] animate-[shimmerText_3s_linear_infinite]">
               Pricing
@@ -620,8 +674,8 @@ export default function PricingPage() {
           className={`mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 bg-white border border-[#EFE2D6] rounded-2xl py-5 px-8 shadow-sm text-center sm:text-left transition-all duration-700 ease-out ${helpIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
         >
           <div>
-            <p className="font-['Satoshi',sans-serif] font-bold text-[15px] text-[#1C1410]">Not sure which plan is right for you?</p>
-            <p className="text-[13px] text-[#6B5A4E] mt-0.5">Our team will help you find the perfect fit for your institute — for free.</p>
+            <p className="font-['SF_Pro_Display','Satoshi',sans-serif] font-bold text-[15px] text-[#1C1410]">Not sure which plan is right for you?</p>
+            <p className="text-[13px] text-[#6B5A4E] mt-0.5">Our team will help you find the perfect fit for your institute - for free.</p>
           </div>
           <a
             href="#whatsapp"
@@ -647,7 +701,7 @@ export default function PricingPage() {
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6">
           {/* Heading */}
           <div className={`text-center mb-14 transition-all duration-700 ease-out ${tableIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
-            <h2 className="font-['Satoshi',sans-serif] font-bold text-[clamp(28px,3.5vw,46px)] leading-[1.1] tracking-[-0.03em] text-[#1C1410]">
+            <h2 className="font-['SF_Pro_Display','Satoshi',sans-serif] font-bold text-[clamp(28px,3.5vw,46px)] leading-[1.1] tracking-[-0.03em] text-[#1C1410]">
               Everything <span className="text-transparent bg-clip-text bg-[linear-gradient(110deg,#C2410C,45%,#F97316,55%,#C2410C)] bg-[length:200%_auto] animate-[shimmerText_3s_linear_infinite]">side by side</span>
             </h2>
           </div>
@@ -669,7 +723,7 @@ export default function PricingPage() {
 
               {/* Starter */}
               <div className="px-4 py-6 flex flex-col items-center gap-1.5 border-b border-r border-[#FDC094]/50 relative" style={{background:'linear-gradient(180deg,#FFF5EC 0%,#FFF1E6 100%)'}}>
-                <span className="font-['Satoshi',sans-serif] font-extrabold text-[16px] text-[#9A3412] mt-2 animate-pulse">Starter</span>
+                <span className="font-['SF_Pro_Display','Satoshi',sans-serif] font-extrabold text-[16px] text-[#9A3412] mt-2 animate-pulse">Starter</span>
                 <span className="text-[11px] text-[#C2410C]/80 font-semibold">LKR 3,500/mo</span>
               </div>
 
@@ -690,7 +744,7 @@ export default function PricingPage() {
                   </div>
                 </div>
 
-                <span className="font-['Satoshi',sans-serif] font-extrabold text-[17px] text-[#C2410C] mt-2 animate-pulse">Standard</span>
+                <span className="font-['SF_Pro_Display','Satoshi',sans-serif] font-extrabold text-[17px] text-[#C2410C] mt-2 animate-pulse">Standard</span>
                 <span className="text-[11px] text-[#9A3412] font-semibold">LKR 5,750/mo</span>
               </div>
 
@@ -709,7 +763,7 @@ export default function PricingPage() {
                   </div>
                 </div>
 
-                <span className="font-['Satoshi',sans-serif] font-extrabold text-[16px] text-[#9A3412] mt-2 animate-pulse">Pro Pack</span>
+                <span className="font-['SF_Pro_Display','Satoshi',sans-serif] font-extrabold text-[16px] text-[#9A3412] mt-2 animate-pulse">Pro Pack</span>
                 <span className="text-[11px] text-[#C2410C]/80 font-semibold">LKR 7,000/mo</span>
               </div>
             </div>
@@ -826,7 +880,7 @@ export default function PricingPage() {
         <div className="max-w-2xl mx-auto px-6">
           <div className={`text-center mb-10 transition-all duration-700 ease-out ${faqIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
 
-            <h2 className="font-['Satoshi',sans-serif] font-bold text-[clamp(26px,3vw,42px)] leading-[1.12] tracking-[-0.03em] text-[#1C1410]">
+            <h2 className="font-['SF_Pro_Display','Satoshi',sans-serif] font-bold text-[clamp(26px,3vw,42px)] leading-[1.12] tracking-[-0.03em] text-[#1C1410]">
               Pricing <span className="text-[#C2410C]">Questions</span>
             </h2>
           </div>

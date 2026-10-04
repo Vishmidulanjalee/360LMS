@@ -2,12 +2,9 @@ import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
 const NAV_LINKS = [
-  { href: '/#platform',  label: 'Platform'    },
-  { href: '/#ecosystem', label: 'Features'    },
-  { href: '/#why',       label: 'Why 360 LMS' },
-  { href: '/#solutions', label: 'Solutions'   },
-  { href: '/#faq',       label: 'FAQ'         },
-  { href: '/#cta',       label: 'Contact'     },
+  { href: '/#platform',  label: 'Platform'  },
+  { href: '/#ecosystem', label: 'Features'  },
+  { href: '/#solutions', label: 'Solutions' },
 ]
 
 export default function Header() {
@@ -43,31 +40,31 @@ export default function Header() {
          ════════════════════════════════════════ */}
       <header className="fixed top-0 left-0 right-0 z-50 pointer-events-none" style={{ paddingTop: '14px' }}>
 
-        {/* ── Desktop pill (hidden on mobile) ── */}
-        <div className="hidden lg:flex justify-center">
+        {/* ── Desktop: logo | pill | CTAs ── */}
+        <div className="hidden lg:grid grid-cols-[1fr_auto_1fr] items-center px-10">
+          {/* Logo — outside pill, left */}
+          <Link to="/" className="pointer-events-auto flex items-center shrink-0 justify-self-start transition-transform duration-300 hover:scale-105">
+            <img src="/360logo.png" alt="360 LMS" className="h-14 w-auto" />
+          </Link>
+
+          {/* Nav pill — center */}
           <div
-            className="pointer-events-auto flex items-center gap-1 px-3 py-2 rounded-[999px] transition-all duration-300"
+            className="pointer-events-auto flex items-center gap-1 px-2.5 py-2 rounded-[999px] transition-all duration-300"
             style={pillStyle}
           >
-            {/* Logo */}
-            <Link to="/" className="flex items-center shrink-0 mr-2">
-              <img src="/360logo.png" alt="360 LMS" className="h-9 w-auto" />
-            </Link>
-
-            {/* Nav links */}
             <nav aria-label="Main" className="flex items-center">
               {NAV_LINKS.map(({ href, label }) => (
                 <a
                   key={href}
                   href={href}
-                  className="px-3.5 py-1.5 rounded-full text-[13.5px] font-semibold text-[#4A3C33] transition-all duration-200 hover:text-[#C2410C] hover:bg-[#F97316]/10"
+                  className="px-4 py-1.5 rounded-full text-[14px] font-semibold text-[#4A3C33] transition-all duration-200 hover:text-[#C2410C] hover:bg-[#F97316]/10"
                 >
                   {label}
                 </a>
               ))}
               <Link
                 to="/pricing"
-                className={`px-3.5 py-1.5 rounded-full text-[13.5px] font-semibold transition-all duration-200 ${
+                className={`px-4 py-1.5 rounded-full text-[14px] font-semibold transition-all duration-200 ${
                   isPricing
                     ? 'text-[#C2410C] bg-[#FFF1E6]'
                     : 'text-[#4A3C33] hover:text-[#C2410C] hover:bg-[#F97316]/10'
@@ -76,22 +73,22 @@ export default function Header() {
                 Pricing
               </Link>
             </nav>
+          </div>
 
-            {/* CTAs */}
-            <div className="flex items-center gap-2 ml-2">
-              <a
-                href="/#cta"
-                className="px-4 py-1.5 rounded-full text-[13.5px] font-semibold text-[#4A3C33] hover:text-[#C2410C] hover:bg-[#F97316]/10 transition-all duration-200"
-              >
-                Sign in
-              </a>
-              <a
-                href="/#cta"
-                className="px-5 py-2 rounded-full bg-[#C2410C] text-white font-bold text-[13.5px] shadow-[0_4px_14px_rgba(194,65,12,.35)] hover:bg-[#9A3412] hover:shadow-[0_6px_20px_rgba(194,65,12,.45)] hover:-translate-y-0.5 transition-all duration-200"
-              >
-                Get Started →
-              </a>
-            </div>
+          {/* CTAs — outside pill, right */}
+          <div className="pointer-events-auto flex items-center gap-2 justify-self-end">
+            <a
+              href="/#cta"
+              className="px-4 py-2 rounded-full text-[14px] font-semibold text-[#4A3C33] hover:text-[#C2410C] hover:bg-[#F97316]/10 transition-all duration-200"
+            >
+              Sign in
+            </a>
+            <a
+              href="/#cta"
+              className="px-5 py-2.5 rounded-full bg-[#C2410C] text-white font-bold text-[14px] shadow-[0_4px_14px_rgba(194,65,12,.35)] hover:bg-[#9A3412] hover:shadow-[0_6px_20px_rgba(194,65,12,.45)] hover:-translate-y-0.5 transition-all duration-200"
+            >
+              Get Started →
+            </a>
           </div>
         </div>
 
@@ -100,7 +97,7 @@ export default function Header() {
           <div className="flex items-center justify-between px-4 h-14">
             {/* Logo — LEFT */}
             <Link to="/" className="flex items-center shrink-0">
-              <img src="/360logo.png" alt="360 LMS" className="h-8 w-auto" />
+              <img src="/360logo.png" alt="360 LMS" className="h-10 w-auto" />
             </Link>
 
             {/* Hamburger — RIGHT */}

@@ -44,7 +44,7 @@ export default function Header() {
         <div className="hidden lg:grid grid-cols-[1fr_auto_1fr] items-center px-10">
           {/* Logo — outside pill, left */}
           <Link to="/" className="pointer-events-auto flex items-center shrink-0 justify-self-start transition-transform duration-300 hover:scale-105">
-            <img src="/360logo.png" alt="360 LMS" className="h-14 w-auto" />
+            <img src="/360logo.png" alt="360 LMS" className="h-24 w-auto -my-5" />
           </Link>
 
           {/* Nav pill — center */}
@@ -97,7 +97,7 @@ export default function Header() {
           <div className="flex items-center justify-between px-4 h-14">
             {/* Logo — LEFT */}
             <Link to="/" className="flex items-center shrink-0">
-              <img src="/360logo.png" alt="360 LMS" className="h-10 w-auto" />
+              <img src="/360logo.png" alt="360 LMS" className="h-16 w-auto -my-2" />
             </Link>
 
             {/* Hamburger — RIGHT */}
